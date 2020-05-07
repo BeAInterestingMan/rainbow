@@ -1,0 +1,12 @@
+server:
+  port: 8101
+
+spring:
+  application:
+    name: rainbow-auth
+
+# nacos注册中心
+  cloud:
+    nacos:
+      discovery:
+        server-addr:
