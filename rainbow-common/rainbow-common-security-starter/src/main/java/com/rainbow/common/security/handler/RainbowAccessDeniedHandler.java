@@ -1,6 +1,7 @@
 package com.rainbow.common.security.handler;
 
 
+import com.rainbow.common.core.entity.RainbowResponse;
 import com.rainbow.common.core.utils.RainbowUtil;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
@@ -18,6 +19,7 @@ public class RainbowAccessDeniedHandler implements AccessDeniedHandler {
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException {
-        RainbowUtil.makeJsonResponse(response, HttpServletResponse.SC_FORBIDDEN, "没有权限访问该资源");
+        RainbowResponse rainbowResponse = new RainbowResponse();
+        RainbowUtil.makeJsonResponse(response, HttpServletResponse.SC_FORBIDDEN, rainbowResponse.message("没有权限访问该资源"));
     }
 }

@@ -24,7 +24,11 @@ import java.io.StringReader;
 import java.sql.Connection;
 import java.util.Properties;
 
-
+/**
+ *  @Description 阻止恶意攻击
+ *  @author liuhu
+ *  @Date 2020/5/13 16:13
+ */
 @Slf4j
 @Intercepts({@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class, Integer.class})})
 public class DataPermissionInterceptor extends AbstractSqlParserHandler implements Interceptor {

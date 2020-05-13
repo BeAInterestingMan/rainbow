@@ -1,7 +1,10 @@
 package com.rainbow.common.security.configure;
 
+import com.rainbow.common.core.entity.RainbowResponse;
+import com.rainbow.common.core.entity.system.Role;
 import com.rainbow.common.security.handler.RainbowAccessDeniedHandler;
 import com.rainbow.common.security.handler.RainbowAuthExceptionEntryPoint;
+import com.rainbow.common.security.properties.RainbowCloudSecurityProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,5 +45,10 @@ public class RainbowSecurityAutoConfigure {
     }
 
 
+    @Bean
+    @ConditionalOnMissingBean(name = "rainbowCloudSecurityProperties")
+    public  RainbowCloudSecurityProperties rainbowCloudSecurityProperties(){
+        return new RainbowCloudSecurityProperties();
+    }
 
 }

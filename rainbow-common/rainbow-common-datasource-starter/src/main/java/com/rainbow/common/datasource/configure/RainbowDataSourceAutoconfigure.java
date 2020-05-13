@@ -20,19 +20,19 @@ import java.util.List;
  */
 @Configuration
 public class RainbowDataSourceAutoconfigure {
-
-   /**
-    * @Description 注册数据权限
-    * @author liuhu
-    * @createTime 2020-05-12 09:20:28
-    * @param
-    * @return DataPermissionInterceptor
-    */
-    @Bean
-    @Order(-1)
-    public DataPermissionInterceptor dataPermissionInterceptor(){
-        return new DataPermissionInterceptor();
-    }
+//
+//   /**
+//    * @Description 注册数据权限
+//    * @author liuhu
+//    * @createTime 2020-05-12 09:20:28
+//    * @param
+//    * @return DataPermissionInterceptor
+//    */
+//    @Bean
+//    @Order(-1)
+//    public DataPermissionInterceptor dataPermissionInterceptor(){
+//        return new DataPermissionInterceptor();
+//    }
 
     /**
      * @Description 分页插件

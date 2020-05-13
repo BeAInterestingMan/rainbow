@@ -11,6 +11,7 @@
     <modules>
         <module>rainbow-auth</module>
         <module>rainbow-common</module>
+        <module>rainbow-server</module>
     </modules>
     <description>rainbow微服务</description>
     <!--springboot版本号-->
@@ -29,6 +30,7 @@
         <mybatis-plus.version>3.2.0</mybatis-plus.version>
         <dynamic-datasource.version>2.5.7</dynamic-datasource.version>
         <p6spy.version>3.8.5</p6spy.version>
+        <easy-captcha.version>1.6.2</easy-captcha.version>
     </properties>
 
     <!--规定子工程依赖版本  不需要写版本号-->

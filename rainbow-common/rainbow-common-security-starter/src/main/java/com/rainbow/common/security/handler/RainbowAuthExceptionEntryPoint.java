@@ -1,5 +1,6 @@
 package com.rainbow.common.security.handler;
 
+import com.rainbow.common.core.entity.RainbowResponse;
 import com.rainbow.common.core.utils.RainbowUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;
@@ -24,6 +25,6 @@ public class RainbowAuthExceptionEntryPoint implements AuthenticationEntryPoint 
         int status = HttpServletResponse.SC_UNAUTHORIZED;
         String message = "访问令牌不合法";
         log.error("客户端访问{}请求失败: {}", requestUri, message, authException);
-        RainbowUtil.makeJsonResponse(response, status, message);
+        RainbowUtil.makeJsonResponse(response, status, new RainbowResponse().message(message));
     }
 }

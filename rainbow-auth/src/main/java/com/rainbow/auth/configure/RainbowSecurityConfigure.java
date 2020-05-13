@@ -1,5 +1,6 @@
 package com.rainbow.auth.configure;
 
+import com.rainbow.auth.filter.ValidateCaptchaFilter;
 import com.rainbow.auth.service.impl.RainbowUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  *  @Description  security web层配置
@@ -24,6 +26,9 @@ public class RainbowSecurityConfigure extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private  PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private ValidateCaptchaFilter validateCaptchaFilter;
 
     /**
      * @Description oauth2.0密码模式认证器
@@ -40,7 +45,8 @@ public class RainbowSecurityConfigure extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-                http
+        // 先执行验证码过滤
+        http.addFilterBefore(validateCaptchaFilter, UsernamePasswordAuthenticationFilter.class)
                 .requestMatchers()
                 .antMatchers("/oauth/**")
                 .and()

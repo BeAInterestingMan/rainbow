@@ -1,6 +1,15 @@
 package com.rainbow.common.security.configure;
 
+import com.rainbow.common.core.constant.EndpointConstant;
+import com.rainbow.common.security.handler.RainbowAccessDeniedHandler;
+import com.rainbow.common.security.handler.RainbowAuthExceptionEntryPoint;
+import com.rainbow.common.security.properties.RainbowCloudSecurityProperties;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 /**
@@ -8,14 +17,56 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
  *  @author liuhu
  *  @Date 2020/5/13 11:07
  */
+@EnableResourceServer
+@Configuration
 public class RainbowResourceServerConfigure extends ResourceServerConfigurerAdapter {
+
+    @Autowired
+    private RainbowAccessDeniedHandler rainbowAccessDeniedHandler;
+
+    @Autowired
+    private RainbowAuthExceptionEntryPoint exceptionEntryPoint;
+
+    @Autowired
+    private RainbowCloudSecurityProperties securityProperties;
+
+    /**
+     * @Description 配置处理403 401
+     * @author liuhu
+     * @createTime 2020-05-13 11:18:08
+     * @param resources
+     * @return void
+     */
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        super.configure(resources);
+          resources.authenticationEntryPoint(exceptionEntryPoint)
+                  .accessDeniedHandler(rainbowAccessDeniedHandler);
     }
 
+    /**
+     * @Description 所有请求必须认证通过才能访问
+     * @author liuhu
+     * @createTime 2020-05-13 11:18:27
+     * @param http
+     * @return void
+     */
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        super.configure(http);
+        // 免认证路径
+        String[] anonUrls = StringUtils.split(securityProperties.getAnonUris());
+        if (ArrayUtils.isEmpty(anonUrls)) {
+            anonUrls = new String[]{};
+        }
+       http.cors().disable()
+               .requestMatchers()
+               .antMatchers(EndpointConstant.ALL)
+               .and()
+               .authorizeRequests()
+               .antMatchers("/captcha")
+               .permitAll()
+               .antMatchers(EndpointConstant.ALL)
+               .authenticated()
+               .and()
+               .httpBasic();
     }
 }

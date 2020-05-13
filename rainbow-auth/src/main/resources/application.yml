@@ -37,3 +37,9 @@ spring:
         max-wait: 10000
     timeout: 5000
 
+
+
+rainbow:
+  cloud:
+    security:
+      anonUris: /captcha
