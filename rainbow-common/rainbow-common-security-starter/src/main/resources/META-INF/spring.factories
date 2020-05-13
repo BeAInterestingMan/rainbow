@@ -1,0 +1,4 @@
+# Auto Configure spring的工厂加载机制的实现类为SpringFactoriesLoader会自动加载改1文件   如果被加载的全限定类名符合要求
+# 且启动类@EnableAutoConfiguration注解标注 就可注入到springboot  springboot的@SpringbootApplication 默认包含了该注解  所以不用加
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.rainbow.common.security.configure.RainbowSecurityAutoConfigure

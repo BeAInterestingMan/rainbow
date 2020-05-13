@@ -26,6 +26,9 @@
         <com-alibaba-cloud.version>2.1.1.RELEASE</com-alibaba-cloud.version>
         <fastjson.version>1.2.62</fastjson.version>
         <guava.version>27.0-jre</guava.version>
+        <mybatis-plus.version>3.2.0</mybatis-plus.version>
+        <dynamic-datasource.version>2.5.7</dynamic-datasource.version>
+        <p6spy.version>3.8.5</p6spy.version>
     </properties>
 
     <!--规定子工程依赖版本  不需要写版本号-->

@@ -10,9 +10,10 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
-        <module>rainbow-common-core-starter</module>
+        <module>rainbow-common-core</module>
         <module>rainbow-common-redis-starter</module>
         <module>rainbow-common-datasource-starter</module>
+        <module>rainbow-common-security-starter</module>
     </modules>
     <artifactId>rainbow-common</artifactId>
     <description>通用工程</description>
