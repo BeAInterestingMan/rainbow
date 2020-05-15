@@ -22,10 +22,10 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 public class RainbowResourceServerConfigure extends ResourceServerConfigurerAdapter {
 
     @Autowired
-    private RainbowAccessDeniedHandler rainbowAccessDeniedHandler;
+    private RainbowAccessDeniedHandler accessDeniedHandler;
 
     @Autowired
-    private RainbowAuthExceptionEntryPoint exceptionEntryPoint;
+    private RainbowAuthExceptionEntryPoint authExceptionEntryPoint;
 
     @Autowired
     private RainbowCloudSecurityProperties securityProperties;
@@ -39,8 +39,8 @@ public class RainbowResourceServerConfigure extends ResourceServerConfigurerAdap
      */
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-          resources.authenticationEntryPoint(exceptionEntryPoint)
-                  .accessDeniedHandler(rainbowAccessDeniedHandler);
+          resources.authenticationEntryPoint(authExceptionEntryPoint)
+                  .accessDeniedHandler(accessDeniedHandler);
     }
 
     /**

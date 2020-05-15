@@ -1,4 +1,4 @@
-package com.rainbow.common.core.entity;
+package com.rainbow.auth.entity;
 
 import lombok.Data;
 

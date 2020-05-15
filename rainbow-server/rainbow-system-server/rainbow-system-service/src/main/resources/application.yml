@@ -1,11 +1,16 @@
 server:
-  port: 8881
+  port: 8883
+
 spring:
-  #注册nacos
+  application:
+    name: rainbow-system-server
+
+
   cloud:
     nacos:
       discovery:
         server-addr: 192.168.13.185:8848
+
 
   datasource:
     dynamic:
@@ -24,7 +29,7 @@ spring:
           driver-class-name: com.mysql.cj.jdbc.Driver
           url: jdbc:mysql://129.211.60.109:3306/rainbow?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
 
-#redis
+  #redis
   redis:
     database: 0
     host: 129.211.60.109
@@ -36,17 +41,10 @@ spring:
         max-active: 2000
         max-wait: 10000
     timeout: 5000
-
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.rainbow.common.core.entity
+  type-aliases-package: com.rainbow.server.system.api.entity
   configuration:
     map-underscore-to-camel-case: true
   global-config:
     banner: false
-
-# 免认证url 多个逗号拼接
-rainbow:
-  cloud:
-    security:
-      anonUris: /captcha

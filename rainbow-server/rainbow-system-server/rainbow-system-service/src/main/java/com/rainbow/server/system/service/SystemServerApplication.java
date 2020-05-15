@@ -1,22 +1,20 @@
-package com.rainbow.auth;
+package com.rainbow.server.system.service;
 
 import com.rainbow.common.security.annotation.EnableRainbowResourceServer;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
- *  @Description 权限微服务启动类
+ *  @Description 系统微服务
  *  @author liuhu
- *  @Date 2020/5/7 14:23
+ *  @Date 2020/5/13 13:09
  */
 @EnableFeignClients
 @SpringBootApplication
 @EnableRainbowResourceServer
-@MapperScan("com.rainbow.auth.mapper")
-public class AuthApplication {
+public class SystemServerApplication {
     public static void main(String[] args) {
-        SpringApplication.run(AuthApplication.class);
+        SpringApplication.run(SystemServerApplication.class,args);
     }
 }

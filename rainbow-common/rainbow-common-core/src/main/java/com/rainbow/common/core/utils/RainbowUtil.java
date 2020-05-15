@@ -5,8 +5,12 @@ import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -101,4 +105,22 @@ public class RainbowUtil {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         System.out.println(passwordEncoder.encode("123456"));
     }
+
+    /**
+     * @Description 获取到token
+     * @author liuhu
+     * @createTime 2020-05-14 14:58:06
+     * @param
+     * @return java.lang.String
+     */
+    public static String getCurrentTokenValue() {
+        OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) getOauth2Authentication().getDetails();
+        return details.getTokenValue();
+    }
+
+    private static OAuth2Authentication getOauth2Authentication() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return (OAuth2Authentication) authentication;
+    }
+
 }

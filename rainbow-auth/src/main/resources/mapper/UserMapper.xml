@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainbow.auth.mapper.UserMapper">
+    <resultMap id="UserMap" type="com.rainbow.common.core.entity.system.SystemUser">
+        <id property="userId"  column="USER_ID"/>
+        <result property="username"  column="USERNAME"/>
+        <result property="password"  column="PASSWORD"/>
+        <result property="deptId"  column="DEPT_ID"/>
+        <result property="email" column="EMAIL"/>
+        <result property="mobile"  column="MOBILE"/>
+        <result property="status"  column="STATUS"/>
+        <result property="createTime"  column="CREATE_TIME"/>
+        <result property="modifyTime"  column="MODIFY_TIME"/>
+        <result property="lastLoginTime"  column="LAST_LOGIN_TIME"/>
+        <result property="sex"  column="SSEX"/>
+        <result property="avatar"  column="AVATAR"/>
+        <result property="description"  column="DESCRIPTION"/>
+
+        <result property="deptId"  column="dept_id"/>
+        <result property="deptName"  column="dept_name"/>
+        <result property="roleId"  column="role_id"/>
+        <result property="roleName"  column="role_name"/>
+    </resultMap>
+
+    <select id="findByName" parameterType="string" resultMap="UserMap">
+        SELECT
+        u.user_id,
+        u.username,
+        u.email,
+        u.mobile,
+        u.password,
+        u.status,
+        u.create_time,
+        u.ssex sex,
+        u.dept_id deptId,
+        u.last_login_time,
+        u.modify_time,
+        u.description,
+        u.avatar,
+        d.dept_id,
+        d.dept_name deptName,
+        GROUP_CONCAT(r.role_id) role_id,
+        GROUP_CONCAT(r.ROLE_NAME) role_name
+        FROM
+        t_user u
+        LEFT JOIN t_dept d ON (u.dept_id = d.dept_id)
+        LEFT JOIN t_user_role ur ON (u.user_id = ur.user_id)
+        LEFT JOIN t_role r ON r.role_id = ur.role_id
+        WHERE  u.username = #{username}
+        group by u.username,u.user_id,u.email,u.mobile,u.password, u.status,u.create_time,u.ssex,u.dept_id
+				,u.last_login_time,u.modify_time,u.description,u.avatar
+    </select>
+
+    <select id="findUserDataPermissions" parameterType="long"  resultType="com.rainbow.common.core.entity.system.UserDataPermission">
+        select user_id, dept_id from t_user_data_permission
+        where user_id = #{userId}
+    </select>
+
+</mapper>

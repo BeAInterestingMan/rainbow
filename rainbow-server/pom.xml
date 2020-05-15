@@ -12,8 +12,25 @@
     <artifactId>rainbow-server</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>rainbow-server-system</module>
+        <module>rainbow-system-server</module>
     </modules>
 
-
+    <description>系统微服务</description>
+    <dependencies>
+        <dependency>
+            <groupId>com.rainbow</groupId>
+            <artifactId>rainbow-common-datasource-starter</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.rainbow</groupId>
+            <artifactId>rainbow-common-redis-starter</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.rainbow</groupId>
+            <artifactId>rainbow-common-security-starter</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

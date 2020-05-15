@@ -37,8 +37,15 @@ spring:
         max-wait: 10000
     timeout: 5000
 
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.rainbow.common.core.entity
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    banner: false
 
-
+# 免认证url 多个逗号拼接
 rainbow:
   cloud:
     security:
