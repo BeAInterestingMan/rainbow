@@ -1,9 +1,10 @@
 package com.rainbow.gateway.filter;
 
 import com.alibaba.fastjson.JSONObject;
+import com.rainbow.common.core.constant.RainbowConstant;
 import com.rainbow.common.core.entity.RainbowResponse;
 import com.rainbow.gateway.properties.RainbowGatewayProperties;
-import com.rainbow.gateway.constant.RainbowGatewayConstant;
+
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +46,8 @@ public class RainbowGatewayFilter implements GlobalFilter {
         }
         printLog(exchange);
         // 加入验证标识 禁止请求绕过网关
-        byte[] token = Base64Utils.encode((RainbowGatewayConstant.GATEWAY_TOKEN_VALUE).getBytes());
-        ServerHttpRequest build = request.mutate().header(RainbowGatewayConstant.GATEWAY_TOKEN_HEADER, new String(token)).build();
+        byte[] token = Base64Utils.encode((RainbowConstant.GATEWAY_TOKEN_VALUE).getBytes());
+        ServerHttpRequest build = request.mutate().header(RainbowConstant.GATEWAY_TOKEN_HEADER, new String(token)).build();
         ServerWebExchange newExchange = exchange.mutate().request(build).build();
         return chain.filter(newExchange);
     }

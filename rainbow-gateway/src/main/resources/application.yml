@@ -17,9 +17,19 @@ spring:
           uri: lb://rainbow-auth
           predicates:
             - Path=/auth/**
+          filters:
+            - name: Hystrix
+              args:
+                name: auth-fallback
+                fallbackUri: forward:/fallback/rainbow-auth
         - id: rainbow-system-server
           uri: lb://rainbow-system-server
           predicates:
             - Path=/system/**
+          filters:
+            - name: Hystrix
+              args:
+                name: auth-fallback
+                fallbackUri: forward:/fallback/rainbow-system-server
       default-filters:
         - StripPrefix=1

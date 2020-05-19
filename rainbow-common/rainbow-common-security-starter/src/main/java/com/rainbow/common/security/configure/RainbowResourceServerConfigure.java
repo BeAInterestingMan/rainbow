@@ -62,7 +62,7 @@ public class RainbowResourceServerConfigure extends ResourceServerConfigurerAdap
                .antMatchers(EndpointConstant.ALL)
                .and()
                .authorizeRequests()
-               .antMatchers("/captcha")
+               .antMatchers(anonUrls)
                .permitAll()
                .antMatchers(EndpointConstant.ALL)
                .authenticated()

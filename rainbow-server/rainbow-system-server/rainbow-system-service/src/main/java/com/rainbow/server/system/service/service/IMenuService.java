@@ -1,4 +1,4 @@
-package com.rainbow.auth.service;
+package com.rainbow.server.system.service.service;
 
 import com.rainbow.common.core.entity.system.Menu;
 

@@ -1,6 +1,7 @@
 package com.rainbow.server.system.service;
 
 import com.rainbow.common.security.annotation.EnableRainbowResourceServer;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -13,6 +14,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 @SpringBootApplication
 @EnableRainbowResourceServer
+@MapperScan("com.rainbow.server.system.service.mapper")
 public class SystemServerApplication {
     public static void main(String[] args) {
         SpringApplication.run(SystemServerApplication.class,args);

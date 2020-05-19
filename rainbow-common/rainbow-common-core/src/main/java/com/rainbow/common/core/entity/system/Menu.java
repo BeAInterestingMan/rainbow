@@ -8,6 +8,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  *  @Description 菜单实体
@@ -81,6 +82,10 @@ public class Menu implements Serializable {
      */
     @TableField("ORDER_NUM")
     private Integer orderNum;
+
+    @TableField(exist = false)
+    private List<Menu> childMenus;
+
 
     /**
      * 创建时间

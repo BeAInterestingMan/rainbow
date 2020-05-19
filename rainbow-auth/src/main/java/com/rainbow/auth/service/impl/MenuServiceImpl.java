@@ -2,7 +2,10 @@ package com.rainbow.auth.service.impl;
 
 
 import com.rainbow.auth.service.IMenuService;
+import com.rainbow.common.core.entity.system.Menu;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  *  @Description 菜单业务层实现类
@@ -11,4 +14,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MenuServiceImpl implements IMenuService {
+    @Override
+    public List<Menu> getMenuTree() {
+
+        return null;
+    }
 }

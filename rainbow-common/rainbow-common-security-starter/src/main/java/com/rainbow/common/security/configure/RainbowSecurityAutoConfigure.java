@@ -71,4 +71,16 @@ public class RainbowSecurityAutoConfigure {
             requestTemplate.header(HttpHeaders.AUTHORIZATION, RainbowConstant.OAUTH2_TOKEN_TYPE + authorizationToken);
         };
     }
+
+    /**
+     * @Description 注入微服务防护
+     * @author liuhu
+     * @createTime 2020-05-19 16:42:07
+     * @param
+     * @return com.rainbow.common.security.configure.RainbowProtectConfigure
+     */
+    @Bean
+    public RainbowProtectConfigure protectConfigure(){
+        return new RainbowProtectConfigure();
+    }
 }
