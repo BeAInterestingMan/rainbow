@@ -11,6 +11,7 @@ spring:
         server-addr: 192.168.13.185:8848
 
     gateway:
+
       routes:
         - id: rainbow-auth
           uri: lb://rainbow-auth

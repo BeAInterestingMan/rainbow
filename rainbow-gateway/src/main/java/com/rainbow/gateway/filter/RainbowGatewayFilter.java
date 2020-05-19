@@ -2,7 +2,7 @@ package com.rainbow.gateway.filter;
 
 import com.alibaba.fastjson.JSONObject;
 import com.rainbow.common.core.entity.RainbowResponse;
-import com.rainbow.gateway.RainbowGatewayProperties;
+import com.rainbow.gateway.properties.RainbowGatewayProperties;
 import com.rainbow.gateway.constant.RainbowGatewayConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.ArrayUtils;
@@ -91,7 +91,7 @@ public class RainbowGatewayFilter implements GlobalFilter {
                }
            }
        }
-       if (!forbid) {
+       if (forbid) {
            RainbowResponse rainbowResponse = new RainbowResponse().message("该URI不允许外部访问");
            return makeResponse(response, rainbowResponse);
        }

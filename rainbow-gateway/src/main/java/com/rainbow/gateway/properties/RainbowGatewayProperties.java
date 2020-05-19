@@ -1,4 +1,4 @@
-package com.rainbow.gateway;
+package com.rainbow.gateway.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
