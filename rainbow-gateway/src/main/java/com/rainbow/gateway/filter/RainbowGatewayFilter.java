@@ -21,7 +21,9 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
-
+import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.GATEWAY_ORIGINAL_REQUEST_URL_ATTR;
+import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.GATEWAY_REQUEST_URL_ATTR;
+import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.GATEWAY_ROUTE_ATTR;
 import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
@@ -41,6 +43,7 @@ public class RainbowGatewayFilter implements GlobalFilter {
         if (checkForbidUriResult != null) {
             return checkForbidUriResult;
         }
+        printLog(exchange);
         // 加入验证标识 禁止请求绕过网关
         byte[] token = Base64Utils.encode((RainbowGatewayConstant.GATEWAY_TOKEN_VALUE).getBytes());
         ServerHttpRequest build = request.mutate().header(RainbowGatewayConstant.GATEWAY_TOKEN_HEADER, new String(token)).build();
