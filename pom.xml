@@ -12,6 +12,7 @@
         <module>rainbow-auth</module>
         <module>rainbow-common</module>
         <module>rainbow-server</module>
+        <module>rainbow-gateway</module>
     </modules>
     <description>rainbow微服务</description>
     <!--springboot版本号-->

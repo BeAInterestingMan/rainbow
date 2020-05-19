@@ -1,0 +1,25 @@
+server:
+  port: 8882
+
+spring:
+  application:
+    name: rainbow-gateway
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.13.185:8848
+
+    gateway:
+
+      routes:
+        - id: rainbow-auth
+          uri: lb://rainbow-auth
+          predicates:
+            - Path=/auth/**
+        - id: rainbow-system-server
+          uri: lb://rainbow-system-server
+          predicates:
+            - Path=/system/**
+      default-filters:
+        - StripPrefix=1
