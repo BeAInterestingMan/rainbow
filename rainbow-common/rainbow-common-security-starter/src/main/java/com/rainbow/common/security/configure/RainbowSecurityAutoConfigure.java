@@ -9,6 +9,7 @@ import com.rainbow.common.security.handler.RainbowAuthExceptionEntryPoint;
 import com.rainbow.common.security.properties.RainbowCloudSecurityProperties;
 import feign.RequestInterceptor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -23,6 +24,12 @@ import org.springframework.util.Base64Utils;
  */
 @Configuration
 public class RainbowSecurityAutoConfigure {
+
+    @Bean
+    @ConditionalOnMissingBean(name = "securityProperties")
+    public RainbowCloudSecurityProperties securityProperties(){
+        return new RainbowCloudSecurityProperties();
+    }
 
     /**
      * @Description 注入 security加密类
@@ -80,6 +87,7 @@ public class RainbowSecurityAutoConfigure {
      * @return com.rainbow.common.security.configure.RainbowProtectConfigure
      */
     @Bean
+    @ConditionalOnProperty(name = "rainbow.cloud.security.enable",havingValue = "true",matchIfMissing = true)
     public RainbowProtectConfigure protectConfigure(){
         return new RainbowProtectConfigure();
     }

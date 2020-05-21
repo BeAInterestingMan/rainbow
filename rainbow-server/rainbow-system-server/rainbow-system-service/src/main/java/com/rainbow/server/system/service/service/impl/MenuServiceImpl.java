@@ -1,9 +1,9 @@
 package com.rainbow.server.system.service.service.impl;
 
 
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.rainbow.common.core.entity.system.Menu;
+import com.rainbow.common.core.exception.RainbowException;
 import com.rainbow.server.system.service.mapper.MenuMapper;
 import com.rainbow.server.system.service.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,17 +27,53 @@ public class MenuServiceImpl implements IMenuService {
 
     @Override
     public List<Menu> getMenuTree() {
-        List<Menu> rootMenu = menuMapper.selectList(new QueryWrapper<Menu>().orderByDesc("create_time"));
-        List<Menu> menuTree=null;
-        // 得到顶级菜单  递归子菜单
-        if(!CollectionUtils.isEmpty(rootMenu)){
-            menuTree = rootMenu.stream().filter(menu -> Menu.TYPE_MENU.equals(menu.getType()) && Menu.TOP_MENU_ID == menu.getParentId())
-                    .map(menu -> {
-                        menu.setChildMenus(getChildren(menu, rootMenu));
-                        return menu;
-                    }).collect(Collectors.toList());
+       try {
+           List<Menu> rootMenu = menuMapper.selectList(new QueryWrapper<Menu>().orderByDesc("create_time"));
+           List<Menu> menuTree=null;
+           // 得到顶级菜单  递归子菜单
+           if(!CollectionUtils.isEmpty(rootMenu)){
+               menuTree = rootMenu.stream().filter(menu -> Menu.TYPE_MENU.equals(menu.getType()) && Menu.TOP_MENU_ID == menu.getParentId())
+                       .map(menu -> {
+                           menu.setChildMenus(getChildren(menu, rootMenu));
+                           return menu;
+                       }).collect(Collectors.toList());
+           }
+           return menuTree;
+       }catch (Exception e){
+           e.printStackTrace();
+           throw new RainbowException("获取树菜单失败");
+       }
+    }
+
+    @Override
+    public Menu save(Menu menu) {
+       try {
+           if(null != menu.getMenuId()){
+               menuMapper.updateById(menu);
+           }else{
+               menuMapper.insert(menu);
+           }
+       }catch (Exception e){
+           e.printStackTrace();
+           throw new RainbowException("保存菜单失败");
+       }
+        return menu;
+    }
+
+    @Override
+    public void delete(long menuId) {
+        try {
+            Menu menu = menuMapper.selectById(menuId);
+            QueryWrapper<Menu> queryWrapper = new QueryWrapper<>();
+            List<Menu> menus = menuMapper.selectList(queryWrapper.eq("PARENT_ID", menu.getMenuId()));
+            if(!CollectionUtils.isEmpty(menus)){
+                throw new RainbowException("该菜单有子菜单不允许删除");
+            }
+            menuMapper.deleteById(menuId);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new RainbowException("删除菜单失败");
         }
-        return menuTree;
     }
 
     /**

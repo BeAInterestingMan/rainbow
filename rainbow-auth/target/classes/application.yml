@@ -53,4 +53,4 @@ mybatis-plus:
 rainbow:
   cloud:
     security:
-      anonUris: /captcha
+      anonUris: /captcha,/swagger-ui.html,/webjars/**,/swagger-resources/**,/v2/api-docs/**

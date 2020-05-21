@@ -1,7 +1,6 @@
 package com.rainbow.common.security.configure;
 
 import com.rainbow.common.security.intercept.RainbowProtectInterceptor;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /**

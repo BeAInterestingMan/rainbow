@@ -12,17 +12,9 @@ public class RainbowCloudSecurityProperties {
      */
     private Boolean enable;
     /**
-     * 配置需要认证的uri，默认为所有/**
-     */
-    private String authUri;
-    /**
      * 免认证资源路径，支持通配符
      * 多个值时使用逗号分隔
      */
     private String anonUris;
-    /**
-     * 是否只能通过网关获取资源
-     */
-    private Boolean onlyFetchByGateway = Boolean.TRUE;
 
 }

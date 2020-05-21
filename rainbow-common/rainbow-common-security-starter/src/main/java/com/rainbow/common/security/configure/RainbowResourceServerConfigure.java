@@ -1,5 +1,6 @@
 package com.rainbow.common.security.configure;
 
+import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.rainbow.common.core.constant.EndpointConstant;
 import com.rainbow.common.security.handler.RainbowAccessDeniedHandler;
 import com.rainbow.common.security.handler.RainbowAuthExceptionEntryPoint;
@@ -53,7 +54,7 @@ public class RainbowResourceServerConfigure extends ResourceServerConfigurerAdap
     @Override
     public void configure(HttpSecurity http) throws Exception {
         // 免认证路径
-        String[] anonUrls = StringUtils.split(securityProperties.getAnonUris());
+        String[] anonUrls = StringUtils.split(securityProperties.getAnonUris(), StringPool.COMMA);
         if (ArrayUtils.isEmpty(anonUrls)) {
             anonUrls = new String[]{};
         }
@@ -65,8 +66,7 @@ public class RainbowResourceServerConfigure extends ResourceServerConfigurerAdap
                .antMatchers(anonUrls)
                .permitAll()
                .antMatchers(EndpointConstant.ALL)
-               .authenticated()
-               .and()
-               .httpBasic();
+               .authenticated();
+
     }
 }
