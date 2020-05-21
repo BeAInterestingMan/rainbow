@@ -88,10 +88,10 @@ rainbow模块：
 服务名称 | 端口 | 描述
 ---|---|---
 rainbow-Auth| 8881| 微服务认证服务器 
-rainbow-server-System| 8882 | 微服务子系统（资源服务器）
+rainbow-server-System| 8883 | 微服务子系统（资源服务器）
 nacos| 8848 | 注册中心
-rainbow-gateway|8882|微服务网关
-rainbow-bus|8883|微服务消息系统
+rainbow-gateway| 8882 |微服务网关
+rainbow-bus| 8884 |微服务消息系统
 
 ### 目录结构
 ```
