@@ -7,29 +7,46 @@
 
 rainbow是一款使用Spring Cloud Hoxton.RELEASE、Spring Cloud OAuth2 & Spring Cloud Alibaba构建的权限管理系统：
 
-1. 前后端分离架构，客户端和服务端纯Token交互；
- 
-2. 认证服务器与资源服务器分离，方便接入自己的微服务系统；
+1.搭建auth服务
+  1-认证服务器
+  2- 第三方客户端信息 存入mysql 和 redis  可以动态接入
+  3- 资源服务器配置 （抽取到security-starter）
+  4- 认证服务器配置
+  5- 开启验证码  -- 利用redis  将验证码值存入redis
 
-3. 微服务防护，客户端请求资源只能通过微服务网关获取；
+2.搭建redis-starter
+   1- 编写 redis配置类 序列化
+   2- 编写redis工具类
+   3- 利用自动装配注入spring ioc
 
-4. 集成Prometheus，SpringBootAdmin，多维度监控微服务；
+3.搭建common-core
+       1.维护系统常量类
+       2.维护常用工具类
+       3.全局异常处理基类
+   
+4.搭建datasource-starter
+          1- 配置分页插件
+          2- sql数据拦截
 
-5. 集成Spring Cloud Alibaba Nacos服务治理和集中配置管理；
+5.搭建security-staarter
+   1-编写自动注入配置类  把权限相关的配置 自动注入
+   2-处理401 4.03异常
+   3-微服务防护拦截器  不允许请求绕过网关
+   4-配置feign  feign请求不会携带token 手动拦截请求  请求头放入token
 
-6. 网关限流，网关黑名单限制，网关日志（WebFlux编程实践）；
+6.搭建gateway网关
+   1. 配置路由规则
+    2.配置防护禁止请求绕过网关
+    3.限流和黑名单配置
+    4.跨域配置
+    5.服务转发日志
 
-7. ~~集成Zipkin，方便跟踪Feign调用链~~，集成Skywalking APM；
+7.整合swagger接口文档   
 
-8. 集成ELK，集中管理日志，便于问题分析；
+8.搭建rainbow-system 系统服务
+  1.构建树结构菜单
+  2.整合easypoi导入导出
 
-9. 微服务Docker化，使用Docker Compose一键部署；
-
-10. 支持Kubernetes集群部署；
-
-11. 提供详细的使用文档和搭建教程；
-
-12. 前后端请求参数校验，Excel导入导出，代码生成等。
 
 
 
