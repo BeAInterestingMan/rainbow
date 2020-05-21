@@ -10,52 +10,53 @@ rainbow是一款使用Spring Cloud Hoxton.RELEASE、Spring Cloud OAuth2 & Spring
 # 搭建流程
 1.搭建auth服务
 
-  1-认证服务器
+    1. 认证服务器
 
-  2- 第三方客户端信息 存入mysql 和 redis  可以动态接入
+    2. 第三方客户端信息 存入mysql 和 redis  可以动态接入
 
-  3- 资源服务器配置 （抽取到security-starter）
+    3. 资源服务器配置 （抽取到security-starter）
 
-  4- 认证服务器配置
+    4. 认证服务器配置
 
-  5- 开启验证码  -- 利用redis  将验证码值存入redis
+    5. 开启验证码  -- 利用redis  将验证码值存入redis
 
 
 2.搭建redis-starter
 
-   1- 编写 redis配置类 序列化
+     1.编写 redis配置类 序列化
 
-   2- 编写redis工具类
+     2.编写redis工具类
 
-   3- 利用自动装配注入spring ioc
+     3.利用自动装配注入spring ioc
 
 3.搭建common-core
 
-       1.维护系统常量类
+     1.维护系统常量类
 
-       2.维护常用工具类
+     2.维护常用工具类
 
-       3.全局异常处理基类
+     3.全局异常处理基类
    
 4.搭建datasource-starter
 
-          1- 配置分页插件
+     1.配置分页插件
 
-          2- sql数据拦截
+     2.sql数据拦截
 
 5.搭建security-staarter
-   1-编写自动注入配置类  把权限相关的配置 自动注入
 
-   2-处理401 4.03异常
+     1.编写自动注入配置类  把权限相关的配置 自动注入
 
-   3-微服务防护拦截器  不允许请求绕过网关
+     2.处理401 4.03异常
 
-   4-配置feign  feign请求不会携带token 手动拦截请求  请求头放入token
+     3.微服务防护拦截器  不允许请求绕过网关
+
+     4.配置feign  feign请求不会携带token 手动拦截请求  请求头放入token
 
 
 6.搭建gateway网关
 
-   1. 配置路由规则
+    1.配置路由规则
 
     2.配置防护禁止请求绕过网关
 
@@ -69,9 +70,9 @@ rainbow是一款使用Spring Cloud Hoxton.RELEASE、Spring Cloud OAuth2 & Spring
 
 8.搭建rainbow-system 系统服务
 
-  1.构建树结构菜单
+    1.构建树结构菜单
 
-  2.整合easypoi导入导出
+    2.整合easypoi导入导出
 
   
 
