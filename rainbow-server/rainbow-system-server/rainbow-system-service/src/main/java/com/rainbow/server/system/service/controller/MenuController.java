@@ -1,7 +1,10 @@
 package com.rainbow.server.system.service.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.rainbow.common.core.entity.system.Menu;
+import com.rainbow.common.core.utils.ExcelUtils;
+import com.rainbow.server.system.service.mapper.MenuMapper;
 import com.rainbow.server.system.service.service.IMenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -9,6 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
 
 /**
  *  @Description 菜单资源控制层
@@ -22,6 +29,9 @@ public class MenuController {
 
     @Autowired
     private IMenuService menuService;
+
+    @Autowired
+    private MenuMapper menuMapper;
 
     /**
      * @Description 获取树结构全部菜单
@@ -48,7 +58,7 @@ public class MenuController {
     @GetMapping("{username}")
     @PreAuthorize("hasAuthority('menu:view')")
     public ResponseEntity getMenuTreeByUsername(@PathVariable("username") String username){
-        return ResponseEntity.ok(menuService.getMenuTreeByUsername(username));
+        return ResponseEntity.ok(menuService.getUserInfo(username));
     }
 
     /**
@@ -81,5 +91,19 @@ public class MenuController {
         return ResponseEntity.ok().build();
     }
 
+    /**
+     * @Description 导出
+     * @author liuhu
+     * @createTime 2020-05-21 16:34:13
+     * @param response
+     * @return void
+     */
+    @ApiOperation("菜单导出")
+    @GetMapping("download")
+    public void download(HttpServletResponse response) throws IOException {
+        QueryWrapper<Menu> queryWrapper = new QueryWrapper<>();
+        List<Menu> menus = menuMapper.selectList(queryWrapper);
+        ExcelUtils.exportExcel(menus, null, "菜单导出", Menu.class, "菜单导出", response);
+    }
 
 }

@@ -21,4 +21,12 @@ public interface MenuMapper extends BaseMapper<Menu> {
      * @return java.util.List<com.rainbow.common.core.entity.system.Menu>
      */
     List<Menu> findUserPermissions(String username);
+    /**
+     * @Description 得到用户所属菜单
+     * @author liuhu
+     * @createTime 2020-05-21 16:57:14
+     * @param username
+     * @return java.util.List<com.rainbow.common.core.entity.system.Menu>
+     */
+    List<Menu> selectUserMenu(String username);
 }

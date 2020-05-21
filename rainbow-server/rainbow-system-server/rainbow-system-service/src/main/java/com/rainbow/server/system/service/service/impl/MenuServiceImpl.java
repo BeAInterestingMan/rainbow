@@ -10,8 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.jws.Oneway;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -29,16 +32,8 @@ public class MenuServiceImpl implements IMenuService {
     public List<Menu> getMenuTree() {
        try {
            List<Menu> rootMenu = menuMapper.selectList(new QueryWrapper<Menu>().orderByDesc("create_time"));
-           List<Menu> menuTree=null;
            // 得到顶级菜单  递归子菜单
-           if(!CollectionUtils.isEmpty(rootMenu)){
-               menuTree = rootMenu.stream().filter(menu -> Menu.TYPE_MENU.equals(menu.getType()) && Menu.TOP_MENU_ID == menu.getParentId())
-                       .map(menu -> {
-                           menu.setChildMenus(getChildren(menu, rootMenu));
-                           return menu;
-                       }).collect(Collectors.toList());
-           }
-           return menuTree;
+           return buildTree(rootMenu);
        }catch (Exception e){
            e.printStackTrace();
            throw new RainbowException("获取树菜单失败");
@@ -74,6 +69,57 @@ public class MenuServiceImpl implements IMenuService {
             e.printStackTrace();
             throw new RainbowException("删除菜单失败");
         }
+    }
+
+    @Override
+    public List<Menu> getMenuTreeByUsername(String username) {
+        try {
+            List<Menu> menus = menuMapper.selectUserMenu(username);
+            return buildTree(menus);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new RainbowException("构建用户菜单失败");
+        }
+    }
+
+    @Override
+    public Map<String, Object> getUserInfo(String username) {
+     try {
+         List<Menu> menus = getMenuTreeByUsername(username);
+         List<Menu> userPermissions = menuMapper.findUserPermissions(username);
+         List<String> perms = userPermissions.stream().map(Menu::getPerms).collect(Collectors.toList());
+         Map<String, Object> map = new HashMap<>();
+         map.put("permissions",perms);
+         map.put("routes",menus);
+     }catch (Exception e){
+         e.printStackTrace();
+         throw new RainbowException("获取用户权限信息失败");
+     }
+        return null;
+    }
+
+    /**
+     * @Description 构建树形菜单
+     * @author liuhu
+     * @createTime 2020-05-21 17:07:28
+     * @param rootMenu
+     * @return java.util.List<com.rainbow.common.core.entity.system.Menu>
+     */
+    public List<Menu> buildTree(List<Menu> rootMenu){
+        List<Menu> menuTree=null;
+        try {
+            if(!CollectionUtils.isEmpty(rootMenu)){
+                menuTree = rootMenu.stream().filter(menu -> Menu.TYPE_MENU.equals(menu.getType()) && Menu.TOP_MENU_ID == menu.getParentId())
+                        .map(menu -> {
+                            menu.setChildMenus(getChildren(menu, rootMenu));
+                            return menu;
+                        }).collect(Collectors.toList());
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new RainbowException("构建树菜单失败");
+        }
+        return menuTree;
     }
 
     /**

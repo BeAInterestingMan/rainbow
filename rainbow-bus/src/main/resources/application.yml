@@ -1,0 +1,20 @@
+server:
+  port: 8884
+
+spring:
+  application:
+    name: rainbow-bus
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.13.185:8848
+
+
+  rabbitmq:
+    listener:
+      direct:
+        acknowledge-mode: auto
+    password: guest
+    host: guest
+    port: 15672

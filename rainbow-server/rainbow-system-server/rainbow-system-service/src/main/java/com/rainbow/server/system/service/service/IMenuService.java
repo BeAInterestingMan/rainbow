@@ -3,6 +3,7 @@ package com.rainbow.server.system.service.service;
 import com.rainbow.common.core.entity.system.Menu;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *  @Description 菜单业务层接口
@@ -41,5 +42,13 @@ public interface IMenuService {
      * @param username
      * @return com.rainbow.common.core.entity.system.Menu
      */
-    Menu getMenuTreeByUsername(String username);
+    List<Menu> getMenuTreeByUsername(String username);
+    /**
+     * @Description 构建用户信息
+     * @author liuhu
+     * @createTime 2020-05-21 17:11:19
+     * @param username
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
+    Map<String,Object> getUserInfo(String username);
 }
