@@ -10,6 +10,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>rainbow-bus</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>rainbow-bus-api</module>
+        <module>rainbow-bus-service</module>
+    </modules>
     <!--消息微服务-->
     <dependencies>
         <dependency>
@@ -20,6 +25,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.rainbow</groupId>
+            <artifactId>rainbow-common-security-starter</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.rainbow</groupId>
+            <artifactId>rainbow-common-redis-starter</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
