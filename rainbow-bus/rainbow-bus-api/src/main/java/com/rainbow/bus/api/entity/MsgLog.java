@@ -1,7 +1,9 @@
 package com.rainbow.bus.api.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,7 +27,8 @@ public class MsgLog implements Serializable {
     /**
      * 消息唯一标识
      */
-    private String msgId;
+    @TableId(type = IdType.AUTO)
+    private Long msgId;
     /**
      * 消息体, json格式化
      */

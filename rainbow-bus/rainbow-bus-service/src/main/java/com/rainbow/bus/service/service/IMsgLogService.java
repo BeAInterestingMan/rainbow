@@ -1,6 +1,8 @@
 package com.rainbow.bus.service.service;
 
 
+import com.rainbow.bus.api.entity.MsgLog;
+
 /**
  *  @Description 消息投递日志
  *  @author liuhu
@@ -17,4 +19,12 @@ public interface IMsgLogService{
     * @return void
     */
     void updateStatus(String msgId, Integer delivering);
+    /**
+     * @Description 根据ID查询
+     * @author liuhu
+     * @createTime 2020-05-23 14:41:05
+     * @param correlationId
+     * @return com.rainbow.bus.api.entity.MsgLog
+     */
+    MsgLog selectById(String correlationId);
 }

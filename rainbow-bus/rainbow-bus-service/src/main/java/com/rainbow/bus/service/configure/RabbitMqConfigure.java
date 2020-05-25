@@ -7,9 +7,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -19,6 +21,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @Slf4j
+@Transactional(rollbackFor = Exception.class)
 public class RabbitMqConfigure {
 
     @Autowired
@@ -26,6 +29,11 @@ public class RabbitMqConfigure {
 
     @Autowired
     private IMsgLogService logService;
+
+    @Bean
+    public Jackson2JsonMessageConverter converter() {
+        return new Jackson2JsonMessageConverter();
+    }
 
     /**
      * @Description rabbitTemplate 配置
@@ -37,14 +45,15 @@ public class RabbitMqConfigure {
     @Bean
     public RabbitTemplate rabbitTemplate() {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+        rabbitTemplate.setMessageConverter(converter());
         //  消息是否成功发送到Exchange
         rabbitTemplate.setConfirmCallback((correlationData, ack, cause) -> {
             // 成功
             if(ack){
                 // 获得消息唯一ID  消息发送时存入
                 String msgId = correlationData.getId();
-                // 修改消息记录状态为投递中
-                logService.updateStatus(msgId, MsgConstant.MsgLogStatus.DELIVERING);
+                // 修改消息记录状态为投递成功
+                logService.updateStatus(msgId, MsgConstant.MsgLogStatus.DELIVER_SUCCESS);
             }else{
                  // todo 补偿机制
                 log.info("消息发送到Exchange失败, {}, cause: {}", correlationData, cause);
@@ -72,6 +81,6 @@ public class RabbitMqConfigure {
 
     @Bean
     public Binding emailBinding(){
-        return BindingBuilder.bind(emailQueue()).to(emailExchange()).with(RainbowRabbitConstant.RainbowExchange.EMAIL_EXCHANGE);
+        return BindingBuilder.bind(emailQueue()).to(emailExchange()).with(RainbowRabbitConstant.RainbowRoutingKey.EMAIL_ROUTING_KEY);
     }
 }

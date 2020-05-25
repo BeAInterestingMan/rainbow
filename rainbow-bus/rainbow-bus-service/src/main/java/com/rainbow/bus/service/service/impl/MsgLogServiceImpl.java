@@ -21,11 +21,23 @@ public class MsgLogServiceImpl implements IMsgLogService {
     public void updateStatus(String msgId, Integer delivering) {
         try {
             if(StringUtils.isNotBlank(msgId)){
-                MsgLog msgLog = MsgLog.builder().msgId(msgId).status(delivering).build();
+                MsgLog msgLog = msgLogMapper.selectById(msgId);
+                msgLog.setStatus(delivering);
                 msgLogMapper.updateById(msgLog);
             }
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public MsgLog selectById(String correlationId) {
+        MsgLog msgLog =null;
+        try {
+             msgLog = msgLogMapper.selectById(correlationId);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return msgLog;
     }
 }

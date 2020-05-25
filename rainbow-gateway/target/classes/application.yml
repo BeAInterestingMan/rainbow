@@ -8,10 +8,9 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.13.185:8848
+        server-addr: localhost:8848
 
     gateway:
-
       routes:
         - id: rainbow-auth
           uri: lb://rainbow-auth
@@ -29,7 +28,16 @@ spring:
           filters:
             - name: Hystrix
               args:
-                name: auth-fallback
+                name: system-fallback
                 fallbackUri: forward:/fallback/rainbow-system-server
+        - id: rainbow-bus
+          uri: lb://rainbow-bus
+          predicates:
+            - Path=/bus/**
+          filters:
+            - name: Hystrix
+              args:
+                name: bus-fallback
+                fallbackUri: forward:/fallback/rainbow-bus
       default-filters:
         - StripPrefix=1
