@@ -47,7 +47,7 @@ rainbow是一款使用Spring Cloud Hoxton.RELEASE、Spring Cloud OAuth2 & Spring
 
      1.编写自动注入配置类  把权限相关的配置 自动注入
 
-     2.处理401 4.03异常
+     2.处理401 403异常
 
      3.微服务防护拦截器  不允许请求绕过网关
 
@@ -70,9 +70,11 @@ rainbow是一款使用Spring Cloud Hoxton.RELEASE、Spring Cloud OAuth2 & Spring
 
 8.搭建rainbow-system 系统服务
 
-    1.构建树结构菜单
+    1.RBAC及业务处理
 
     2.整合easypoi导入导出
+    
+    3.利用redis实现数据字典功能
 
 9.搭建rainbow-bus 消息服务
 
@@ -107,7 +109,6 @@ rainbow-bus| 8884 |微服务消息系统
 │      ├─rainbow-common-redis-starter                           ------ redis缓存starter
 │      ├─rainbow-common-security-starter                        ------ oauth2.0的一些配置
 │      ├─rainbow-common-core                                    ------ 通用工具及系统通用处理
-│      └─rainbow-common-es                                      ------ es全文检索服务
 ├─rainbow-gateway                                               -----  微服务网关
 └─rainbow-server                                                ------ 资源服务器
 │   ├─rainbow-system-api                                        ------ 资源服务器api
