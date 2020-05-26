@@ -70,7 +70,7 @@ rainbow是一款使用Spring Cloud Hoxton.RELEASE、Spring Cloud OAuth2 & Spring
 
 8.搭建rainbow-system 系统服务
 
-    1.构建树结构菜单
+    1.RBAC及业务处理
 
     2.整合easypoi导入导出
     
