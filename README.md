@@ -1,4 +1,4 @@
-### rainbo 微服务权限系统
+### rainbow 微服务权限系统
 ![https://img.shields.io/badge/license-Apache%202.0-blue.svg?longCache=true&style=flat-square](https://img.shields.io/badge/license-Apache%202.0-blue.svg?longCache=true&style=flat-square)
 ![https://img.shields.io/badge/springcloud-Hoxton.RELEASE-yellow.svg?style=flat-square](https://img.shields.io/badge/springcloud-Hoxton.RELEASE-yellow.svg?style=flat-square)
 ![https://img.shields.io/badge/SpringCloudAlibaba-2.1.1.RELEASE-blueviolet.svg?style=flat-square](https://img.shields.io/badge/SpringCloudAlibaba-2.1.1.RELEASE-blueviolet.svg?style=flat-square)
@@ -74,10 +74,16 @@ rainbow是一款使用Spring Cloud Hoxton.RELEASE、Spring Cloud OAuth2 & Spring
 
     2.整合easypoi导入导出
 
-  
+9.搭建rainbow-bus 消息服务
+
+    1.利用动态代理处理重复消费和消息1丢失的问题
+
+    2.消息日志记录消息,利用定时任务对失败的消息重新投递
+    
+    3.实现登录成功发送邮件功能
 
 
-
+10.整合elasticSeach搭建search服务(待完成)
 
 
 
@@ -95,7 +101,7 @@ rainbow-bus| 8884 |微服务消息系统
 
 ### 目录结构
 ```
-├─rainbow-auth                    ------ 微服务认证服务器
+├─rainbow-auth                                                  ------ 微服务认证服务器
 ├─rainbow-common                                                ------ 通用模块
 │      ├─rainbow-common-datasource-starter                      ------ 数据权限处理和分页插件starter
 │      ├─rainbow-common-redis-starter                           ------ redis缓存starter
@@ -105,7 +111,7 @@ rainbow-bus| 8884 |微服务消息系统
 ├─rainbow-gateway                                               -----  微服务网关
 └─rainbow-server                                                ------ 资源服务器
 │   ├─rainbow-system-api                                        ------ 资源服务器api
-│   └─rainbow-server-server                                     ------ 资源服务器业务处理
+│   └─rainbow-system-server                                     ------ 资源服务器业务处理
 ├─rainbow-bus                                                   ------ 消息微服务  
 ```
 
