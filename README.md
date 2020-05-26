@@ -109,7 +109,6 @@ rainbow-bus| 8884 |微服务消息系统
 │      ├─rainbow-common-redis-starter                           ------ redis缓存starter
 │      ├─rainbow-common-security-starter                        ------ oauth2.0的一些配置
 │      ├─rainbow-common-core                                    ------ 通用工具及系统通用处理
-│      └─rainbow-common-es                                      ------ es全文检索服务
 ├─rainbow-gateway                                               -----  微服务网关
 └─rainbow-server                                                ------ 资源服务器
 │   ├─rainbow-system-api                                        ------ 资源服务器api
