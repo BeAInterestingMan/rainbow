@@ -49,7 +49,16 @@ mybatis-plus:
   global-config:
     banner: false
 
-# 认证服务器校验token
+#开启feign熔断
+feign:
+  hystrix:
+    enabled: true
+
+# 为了让feign获得token
+hystrix:
+  shareSecurityContext: true
+
+# 客户端的每一次请求都会去认证服务器校验token
 security:
   oauth2:
     resource:

@@ -4,6 +4,7 @@ package com.rainbow.common.core.utils;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,6 +15,7 @@ import org.springframework.security.oauth2.provider.authentication.OAuth2Authent
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.stream.IntStream;
 
 /**
@@ -122,5 +124,19 @@ public class RainbowUtil {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return (OAuth2Authentication) authentication;
     }
-
+    /**
+     * @Description 自定义启动日志打印
+     * @author liuhu
+     * @createTime 2020-05-26 13:22:03
+     * @param environment
+     * @return void
+     */
+    public static void printSystemUpBanner(Environment environment) {
+        String banner = "-----------------------------------------\n" +
+                "服务启动成功，时间：" + DateUtil.formatTime2String(LocalDateTime.now(), DateUtil.FULL_TIME_SPLIT_PATTERN) + "\n" +
+                "服务名称：" + environment.getProperty("spring.application.name") + "\n" +
+                "端口号：" + environment.getProperty("server.port") + "\n" +
+                "-----------------------------------------";
+        System.out.println(banner);
+    }
 }

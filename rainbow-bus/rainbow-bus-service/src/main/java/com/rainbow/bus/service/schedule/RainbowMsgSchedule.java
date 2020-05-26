@@ -20,7 +20,7 @@ import java.util.List;
  *  @author liuhu
  *  @Date 2020/5/26 9:23
  */
-@Component
+
 @Slf4j
 public class RainbowMsgSchedule {
 
@@ -37,7 +37,7 @@ public class RainbowMsgSchedule {
      * @param
      * @return void
      */
-    @Scheduled(cron = "0/30 * * * * ?")
+
     public void reSentMsg(){
         log.info("消息重复投递开始----------------");
         // 查询所有的待投递消息

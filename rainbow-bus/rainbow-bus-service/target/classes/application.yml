@@ -63,6 +63,22 @@ spring:
     host: smtp.qq.com
     username: 1649471814@qq.com
     password: maicjbeefsinbhbc
+#开启feign熔断
+#feign:
+#  hystrix:
+#    enabled: true
+
+
+# 为了让feign获得token
+hystrix:
+  shareSecurityContext: true
+
+# 客户端的每一次请求都会去认证服务器校验token
+security:
+  oauth2:
+    resource:
+      id: ${spring.application.name}
+      user-info-uri: http://localhost:8882/auth/user
 
 
 mybatis-plus:
@@ -80,5 +96,5 @@ rainbow:
     security:
       # 免认证url 多个逗号拼接
       anonUris: /captcha,/swagger-ui.html,/webjars/**,/swagger-resources/**,/v2/api-docs/**,/email/**
-      # 是否开启禁止请求绕过网关
+      # 是否禁止请求绕过网关
       enable: false

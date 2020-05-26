@@ -5,7 +5,10 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 /**
  *  @Description 邮件服务feign
  *  @author liuhu
@@ -22,7 +25,7 @@ public interface RainbowMailFeign {
      * @return org.springframework.http.ResponseEntity
      */
     @ApiOperation("发送邮件")
-    @GetMapping
+    @PostMapping("email")
     ResponseEntity<Void> send(@RequestBody RainbowMail rainbowMail);
 
 }

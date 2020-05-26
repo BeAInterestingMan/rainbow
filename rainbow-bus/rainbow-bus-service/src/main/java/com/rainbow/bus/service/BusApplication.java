@@ -16,7 +16,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableRainbowResourceServer
 @MapperScan("com.rainbow.bus.service.mapper")
-@EnableScheduling
 public class BusApplication {
     public static void main(String[] args) {
         SpringApplication.run(BusApplication.class,args);

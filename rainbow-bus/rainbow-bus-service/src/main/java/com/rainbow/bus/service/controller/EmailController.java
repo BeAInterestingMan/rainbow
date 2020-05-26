@@ -6,10 +6,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 /**
  *  @Description 发送邮件
  *  @author liuhu
@@ -31,7 +29,7 @@ public class EmailController {
      * @return org.springframework.http.ResponseEntity
      */
     @ApiOperation("发送邮件")
-    @GetMapping
+    @PostMapping
     public ResponseEntity send(@RequestBody RainbowMail rainbowMail){
         producer.send(rainbowMail);
         return ResponseEntity.ok().build();

@@ -16,6 +16,6 @@
 
 
   <select id="selectDeliverMes" resultMap="msgLogMap">
-    select * from msg_log where status=0 and nextTryTime &lt;= now()
+    select * from msg_log where status=0 and next_try_time &lt;= now()
   </select>
 </mapper>
