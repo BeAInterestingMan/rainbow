@@ -3,6 +3,7 @@ package com.rainbow.bus.service.product;
 import com.alibaba.fastjson.JSONObject;
 import com.rainbow.bus.api.entity.MsgLog;
 import com.rainbow.bus.api.entity.RainbowMail;
+import com.rainbow.bus.service.constant.MsgConstant;
 import com.rainbow.bus.service.constant.RainbowRabbitConstant;
 import com.rainbow.bus.service.exception.BusException;
 import com.rainbow.bus.service.mapper.MsgLogMapper;
@@ -37,7 +38,7 @@ public class EmailProducer {
      */
     public void send(RainbowMail rainbowMail) {
        try {
-           MsgLog msgLog = MsgLog.builder().msg(rainbowMail.getSubject()).status(0).exchange(RainbowRabbitConstant.RainbowExchange.EMAIL_EXCHANGE)
+           MsgLog msgLog = MsgLog.builder().msg(rainbowMail.getSubject()).status(MsgConstant.MsgLogStatus.DELIVERING).exchange(RainbowRabbitConstant.RainbowExchange.EMAIL_EXCHANGE)
                    .routingKey(RainbowRabbitConstant.RainbowRoutingKey.EMAIL_ROUTING_KEY).createTime(new Date()).build();
            msgLogMapper.insert(msgLog);
            // 消息ID

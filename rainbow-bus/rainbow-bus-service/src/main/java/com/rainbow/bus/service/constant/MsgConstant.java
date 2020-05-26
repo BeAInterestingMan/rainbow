@@ -22,6 +22,8 @@ public interface MsgConstant {
         Integer DELIVER_SUCCESS = 1;// 投递成功
         Integer DELIVER_FAIL = 2;// 投递失败
         Integer CONSUMED_SUCCESS = 3;// 已消费
+         // 最大尝试次数
+          Integer MAX_TRY_COUNT =3;
     }
 
 }

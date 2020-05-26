@@ -3,6 +3,8 @@ package com.rainbow.bus.service.service;
 
 import com.rainbow.bus.api.entity.MsgLog;
 
+import java.util.List;
+
 /**
  *  @Description 消息投递日志
  *  @author liuhu
@@ -27,4 +29,21 @@ public interface IMsgLogService{
      * @return com.rainbow.bus.api.entity.MsgLog
      */
     MsgLog selectById(String correlationId);
+
+    /**
+     * @Description 查询待投递消息
+     * @author liuhu
+     * @createTime 2020-05-26 09:31:28
+     * @param
+     * @return com.rainbow.bus.api.entity.MsgLog
+     */
+    List<MsgLog> selectDeliverMes();
+    /**
+     * @Description 更新尝试
+     * @author liuhu
+     * @createTime 2020-05-26 09:48:05
+     * @param msgId
+     * @return void
+     */
+    void updateTryCount(Long msgId);
 }

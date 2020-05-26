@@ -214,5 +214,6 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.10.0" level="project" />
     <orderEntry type="library" name="Maven: com.github.whvcse:easy-captcha:1.6.2" level="project" />
     <orderEntry type="module" module-name="rainbow-common-security-starter" />
+    <orderEntry type="module" module-name="rainbow-bus-api" />
   </component>
 </module>

@@ -2,6 +2,8 @@ package com.rainbow.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
 /**
  *  @Description 网关服务
  *  @author liuhu

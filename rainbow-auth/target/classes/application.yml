@@ -8,7 +8,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.13.185:8848
+        server-addr: localhost:8848
 
   datasource:
     dynamic:
@@ -40,6 +40,9 @@ spring:
         max-wait: 10000
     timeout: 5000
 
+# 开启分享oauth的认证token
+hystrix:
+  shareSecurityContext: true
 
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
