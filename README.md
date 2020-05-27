@@ -93,6 +93,7 @@ rainbow是一款使用Spring Cloud Hoxton.RELEASE、Spring Cloud OAuth2 & Spring
 
 13.搭建rainbow-apm监控服务(待完成)
 
+13.搭建rainbow-gen逆向工程生成代码(待完成)
 
 
 ### 服务模块
