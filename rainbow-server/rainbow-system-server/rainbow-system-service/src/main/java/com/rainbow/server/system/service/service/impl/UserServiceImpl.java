@@ -115,7 +115,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public SystemUser deleteUser(String ids) {
+    public void deleteUser(String ids) {
         try {
             // 删除用户
             String[] idList = ids.split(StringPool.COMMA);
@@ -127,12 +127,40 @@ public class UserServiceImpl implements IUserService {
             // 删除用户角色关系表
             userRoleService.deleteUserRolesByUserId(idList);
             // 删除部门用户中间表
-
-            return user;
+            dataPermissionService.deleteByUserIds(idList);
         } catch (Exception e) {
             e.printStackTrace();
             throw new SystemException("查询用户失败");
         }
+    }
+
+    @Override
+    public void resetPassword(Long id, String newPassword, String oldPassword) {
+        try {
+            if(!StringUtils.equals(newPassword,oldPassword)){
+                throw new SystemException("新密码不能与旧密码一致");
+            }else{
+                SystemUser systemUser = userMapper.selectById(id);
+                systemUser.setPassword(passwordEncoder.encode(newPassword));
+                userMapper.updateById(systemUser);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new SystemException("更改用户密码失败");
+        }
+    }
+
+    @Override
+    public SystemUser getUser(long id) {
+        SystemUser systemUser = null;
+        try {
+             systemUser = userMapper.selectById(id);
+             // TODO 增加角色和 部门等信息
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new SystemException("通过ID得到用户失败");
+        }
+        return systemUser;
     }
 
     /**

@@ -18,7 +18,7 @@
 
         <result property="deptId"  column="dept_id"/>
         <result property="deptName"  column="dept_name"/>
-        <result property="roleId"  column="role_id"/>
+        <result property="roleIds"  column="role_id"/>
         <result property="roleName"  column="role_name"/>
     </resultMap>
 
@@ -60,16 +60,15 @@
         select * from t_user
         <where>
            <if test="user.username != null and user.username != ''">
-               username like concat('%', #{username},'%')
+               username like concat('%', #{user.username},'%')
            </if>
             <if test="user.status != null and user.status != ''">
-                status = #{status}
+              and  status = #{user.status}
             </if>
             <if test="user.sex != null and user.sex != ''">
-                status = #{sex}
+             and  status = #{user.sex}
             </if>
         </where>
-        where user_id = #{userId}
     </select>
 
 </mapper>

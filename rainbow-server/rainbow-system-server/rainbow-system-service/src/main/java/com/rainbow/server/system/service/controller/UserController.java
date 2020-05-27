@@ -6,9 +6,10 @@ import com.rainbow.common.core.entity.QueryRequest;
 import com.rainbow.common.core.entity.system.SystemUser;
 import com.rainbow.common.core.utils.RainbowUtil;
 import com.rainbow.server.system.service.service.IUserService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.Authorization;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("user")
 @RequiredArgsConstructor
+@Api(tags = "系统用户接口")
 public class UserController {
 
     private final RainbowMailFeign rainbowMailFeign;
@@ -56,13 +58,12 @@ public class UserController {
      * @param user
      * @return org.springframework.http.ResponseEntity
      */
-    @GetMapping
+    @GetMapping("page")
     @PreAuthorize("hasAuthority('user:view')")
     @ApiOperation("查询用户列表分页")
     public ResponseEntity userPage(QueryRequest queryRequest, SystemUser user){
             return ResponseEntity.ok(RainbowUtil.buildTableData(userService.userPage(queryRequest,user)));
     }
-
 
     /**
      * @Description 新增用户
@@ -78,7 +79,6 @@ public class UserController {
         return ResponseEntity.ok(userService.addUser(user));
     }
 
-
     /**
      * @Description 删除用户
      * @author liuhu
@@ -86,11 +86,50 @@ public class UserController {
      * @param ids
      * @return org.springframework.http.ResponseEntity
      */
-    @PostMapping("{ids}")
+    @DeleteMapping("{ids}")
     @PreAuthorize("hasAuthority('user:delete')")
     @ApiOperation("删除用户")
     @ApiImplicitParam(name = "ids",value = "用户ID集合")
     public ResponseEntity deleteUser(@PathVariable("ids")String ids){
-        return ResponseEntity.ok(userService.deleteUser(ids));
+        userService.deleteUser(ids);
+        return ResponseEntity.ok().build();
+    }
+
+    /**
+     * @Description 重置密码
+     * @author liuhu
+     * @createTime 2020-05-26 17:31:04
+     * @param id
+     * @return org.springframework.http.ResponseEntity
+     */
+    @PutMapping("password")
+    @PreAuthorize("hasAuthority('user:reset')")
+    @ApiOperation("重置密码")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userId",value = "用户ID"),
+            @ApiImplicitParam(name = "newPassword",value = "新密码"),
+            @ApiImplicitParam(name = "oldPassword",value = "旧密码")
+    })
+    public ResponseEntity resetPassword(@RequestParam("newPassword")String newPassword,
+                                        @RequestParam("oldPassword")String oldPassword,
+                                        @RequestParam("id")Long userId){
+        userService.resetPassword(userId,newPassword,oldPassword);
+        return ResponseEntity.ok().build();
+    }
+
+    /**
+     * @Description 根据用户名得到id
+     * @author liuhu
+     * @createTime 2020-05-26 17:31:04
+     * @param userId
+     * @return org.springframework.http.ResponseEntity
+     */
+    @GetMapping("{userId}")
+    @PreAuthorize("hasAuthority('user:view')")
+    @ApiOperation("删除用户")
+    @ApiImplicitParam(name = "userId",value = "用户ID")
+    public ResponseEntity getUser(@PathVariable("userId")long userId){
+        userService.getUser(userId);
+        return ResponseEntity.ok().build();
     }
 }

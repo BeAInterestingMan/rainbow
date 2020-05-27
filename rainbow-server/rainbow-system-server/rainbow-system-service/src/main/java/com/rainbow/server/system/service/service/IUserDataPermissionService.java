@@ -4,22 +4,28 @@ package com.rainbow.server.system.service.service;
 import java.util.List;
 
 /**
- * @author MrBird
+ *  @Description 用户部门中间表业务层接口
+ *  @author liuhu
+ *  @Date 2020/5/27 10:32
  */
 public interface IUserDataPermissionService {
 
     /**
-     * 通过部门ID删除关联关系
-     *
-     * @param deptIds 部门id
+     * @Description 通过部门ID删除关联关系
+     * @author liuhu
+     * @createTime 2020-05-27 10:32:51
+     * @param deptIds
+     * @return void
      */
     void deleteByDeptIds(List<String> deptIds);
 
-    /**
-     * 通过用户ID删除关联关系
-     *
-     * @param userIds 用户id
-     */
+   /**
+    * @Description 通过用户ID删除关联关系
+    * @author liuhu
+    * @createTime 2020-05-27 10:32:43
+    * @param userIds
+    * @return void
+    */
     void deleteByUserIds(String[] userIds);
 
     /**

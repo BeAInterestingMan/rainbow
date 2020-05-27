@@ -1,6 +1,7 @@
 package com.rainbow.server.system.service.service.impl;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.rainbow.common.core.entity.system.UserRole;
 import com.rainbow.server.system.service.exception.SystemException;
@@ -33,14 +34,8 @@ public class UserRoleServiceImpl implements IUserRoleService {
     @Override
     public void deleteUserRolesByUserId(String[] userIds) {
       try {
-          Arrays.asList(userIds).forEach(userId->{
-              QueryWrapper<UserRole> queryWrapper = new QueryWrapper<>();
-              List<UserRole> userRoles = userRoleMapper.selectList(queryWrapper.eq("USER_ID", userId));
-              userRoles.forEach(userRole -> {
-                  QueryWrapper<UserRole> roleQueryWrapper = new QueryWrapper<>();
-                  userRoleMapper.delete(roleQueryWrapper.eq("ROLE_ID",userRole.getRoleId()));
-              });
-          });
+          LambdaQueryWrapper<UserRole> queryWrapper = new LambdaQueryWrapper<>();
+          userRoleMapper.delete(queryWrapper.in(UserRole::getUserId,userIds));
       }catch (Exception e){
           e.printStackTrace();
           throw new SystemException("删除失败");

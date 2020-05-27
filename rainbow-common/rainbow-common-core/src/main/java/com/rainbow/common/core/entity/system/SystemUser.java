@@ -134,14 +134,16 @@ public class SystemUser implements Serializable {
     @TableField(exist = false)
     private String createTimeTo;
     /**
-     * 角色 ID
+     * 角色ID
      */
     @TableField(exist = false)
     private String roleIds;
 
+    /**角色名称*/
     @TableField(exist = false)
     private String roleName;
 
+    /**部门ID*/
     @TableField(exist = false)
     private String deptIds;
 

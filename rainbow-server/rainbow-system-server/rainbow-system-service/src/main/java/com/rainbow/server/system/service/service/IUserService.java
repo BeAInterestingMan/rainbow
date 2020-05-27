@@ -52,5 +52,25 @@ public interface IUserService {
      * @param ids 用户
      * @return java.lang.Object
      */
-    SystemUser deleteUser(String ids);
+    void deleteUser(String ids);
+
+   /**
+    * @Description 修改密码
+    * @author liuhu
+    * @createTime 2020-05-27 10:29:46
+    * @param id
+    * @param newPassword
+    * @param odlPassword
+    * @return void
+    */
+    void resetPassword(Long id,String newPassword,String odlPassword);
+
+    /**
+     * @Description 通过Id得到用户
+     * @author liuhu
+     * @createTime 2020-05-27 11:32:44
+     * @param id
+     * @return com.rainbow.common.core.entity.system.SystemUser
+     */
+    SystemUser getUser(long id);
 }

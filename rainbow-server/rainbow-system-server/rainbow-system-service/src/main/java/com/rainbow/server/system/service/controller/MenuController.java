@@ -8,6 +8,7 @@ import com.rainbow.server.system.service.mapper.MenuMapper;
 import com.rainbow.server.system.service.service.IMenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,13 +26,12 @@ import java.util.List;
 @Api(tags = "系统菜单接口")
 @RestController
 @RequestMapping("menu")
+@RequiredArgsConstructor
 public class MenuController {
+    
+    private final IMenuService menuService;
 
-    @Autowired
-    private IMenuService menuService;
-
-    @Autowired
-    private MenuMapper menuMapper;
+    private final MenuMapper menuMapper;
 
     /**
      * @Description 获取树结构全部菜单
