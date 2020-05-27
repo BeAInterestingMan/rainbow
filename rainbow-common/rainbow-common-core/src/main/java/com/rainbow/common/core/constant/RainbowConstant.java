@@ -9,4 +9,8 @@ public interface RainbowConstant {
     /**gateway 防护token key*/
     String GATEWAY_TOKEN_VALUE = "gateway_token";
     String GATEWAY_TOKEN_HEADER = "rainbow123456";
+
+    String DEFAULT_PASSWORD = "rainbow";
+
+    String DEFAULT_AVATAR = "default.jpg";
 }

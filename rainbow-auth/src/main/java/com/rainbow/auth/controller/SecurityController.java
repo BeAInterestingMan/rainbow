@@ -1,8 +1,6 @@
 package com.rainbow.auth.controller;
 
 import com.rainbow.auth.service.impl.CaptchaService;
-import com.rainbow.bus.api.entity.RainbowMail;
-import com.rainbow.bus.api.feign.RainbowMailFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,10 +20,6 @@ public class SecurityController {
 
     @Autowired
     private CaptchaService captchaService;
-
-    @Autowired
-    private RainbowMailFeign rainbowMailFeign;
-
 
     /**
      * @Description 生成验证码
@@ -52,13 +46,4 @@ public class SecurityController {
         return principal;
     }
 
-    @GetMapping("test")
-    public void send(){
-        RainbowMail rainbowMail = new RainbowMail();
-        rainbowMail.setToMailAddress("1649471814@qq.com");
-        rainbowMail.setToMailAddress("1649471814@qq.com");
-        rainbowMail.setSubject("11111");
-        rainbowMail.setText("111111");
-        rainbowMailFeign.send(rainbowMail);
-    }
 }

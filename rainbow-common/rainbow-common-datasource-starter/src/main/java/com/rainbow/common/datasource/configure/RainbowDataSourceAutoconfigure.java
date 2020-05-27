@@ -4,7 +4,7 @@ package com.rainbow.common.datasource.configure;
 import com.baomidou.mybatisplus.core.parser.ISqlParser;
 import com.baomidou.mybatisplus.extension.parsers.BlockAttackSqlParser;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
-import com.rainbow.common.datasource.inteceptor.DataPermissionInterceptor;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;

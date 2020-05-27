@@ -1,12 +1,12 @@
-package com.rainbow.auth.handler;
+package com.rainbow.server.system.service.handler;
 
-import com.rainbow.auth.exception.AuthException;
 import com.rainbow.common.core.handler.BaseExceptionHandler;
+import com.rainbow.server.system.service.exception.SystemException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-
+import javax.security.auth.message.AuthException;
 
 /**
  *  @Description 认证模块异常处理
@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  *  @Date 2020/5/13 18:24
  */
 @RestControllerAdvice
-public class AuthExceptionHandler extends BaseExceptionHandler {
-
-    @ExceptionHandler(AuthException.class)
-    public ResponseEntity handlerAuthExceptionHandler(AuthException e){
+public class SystemExceptionHandler extends BaseExceptionHandler {
+    @ExceptionHandler(SystemException.class)
+    public ResponseEntity handlerAuthExceptionHandler(SystemException e){
         return ResponseEntity.ok(e.getMessage());
     }
 }

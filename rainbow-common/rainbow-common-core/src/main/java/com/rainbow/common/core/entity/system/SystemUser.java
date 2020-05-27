@@ -137,7 +137,7 @@ public class SystemUser implements Serializable {
      * 角色 ID
      */
     @TableField(exist = false)
-    private String roleId;
+    private String roleIds;
 
     @TableField(exist = false)
     private String roleName;

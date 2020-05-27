@@ -11,7 +11,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  *  @author liuhu
  *  @Date 2020/5/7 14:23
  */
-@EnableFeignClients("com.rainbow.bus.api.feign")
 @SpringBootApplication
 @EnableRainbowResourceServer
 @MapperScan("com.rainbow.auth.mapper")

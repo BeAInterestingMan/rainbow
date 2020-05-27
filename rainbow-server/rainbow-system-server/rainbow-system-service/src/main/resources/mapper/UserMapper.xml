@@ -56,4 +56,20 @@
         where user_id = #{userId}
     </select>
 
+    <select id="userPage"   resultMap="UserMap">
+        select * from t_user
+        <where>
+           <if test="user.username != null and user.username != ''">
+               username like concat('%', #{username},'%')
+           </if>
+            <if test="user.status != null and user.status != ''">
+                status = #{status}
+            </if>
+            <if test="user.sex != null and user.sex != ''">
+                status = #{sex}
+            </if>
+        </where>
+        where user_id = #{userId}
+    </select>
+
 </mapper>

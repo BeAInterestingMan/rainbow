@@ -1,5 +1,7 @@
 package com.rainbow.server.system.service.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.rainbow.common.core.entity.QueryRequest;
 import com.rainbow.common.core.entity.system.SystemUser;
 
 /**
@@ -24,4 +26,31 @@ public interface IUserService {
      * @return void
      */
     String findUserPermissions(String username);
+    /**
+     * @Description 用户列表分页
+     * @author liuhu
+     * @createTime 2020-05-26 15:18:40
+     * @param queryRequest
+     * @param user
+     * @return com.baomidou.mybatisplus.core.metadata.IPage<com.rainbow.common.core.entity.system.SystemUser>
+     */
+    IPage<SystemUser> userPage(QueryRequest queryRequest, SystemUser user);
+
+    /**
+     * @Description 新增用户
+     * @author liuhu
+     * @createTime 2020-05-26 16:04:26
+     * @param user
+     * @return com.rainbow.common.core.entity.system.SystemUser
+     */
+    SystemUser addUser(SystemUser user);
+
+    /**
+     * @Description 删除用户
+     * @author liuhu
+     * @createTime 2020-05-26 17:33:23
+     * @param ids 用户
+     * @return java.lang.Object
+     */
+    SystemUser deleteUser(String ids);
 }

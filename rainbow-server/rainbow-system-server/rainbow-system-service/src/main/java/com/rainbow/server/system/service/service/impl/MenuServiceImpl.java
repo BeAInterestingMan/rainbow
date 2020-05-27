@@ -4,6 +4,7 @@ package com.rainbow.server.system.service.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.rainbow.common.core.entity.system.Menu;
 import com.rainbow.common.core.exception.RainbowException;
+import com.rainbow.server.system.service.exception.SystemException;
 import com.rainbow.server.system.service.mapper.MenuMapper;
 import com.rainbow.server.system.service.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class MenuServiceImpl implements IMenuService {
            return buildTree(rootMenu);
        }catch (Exception e){
            e.printStackTrace();
-           throw new RainbowException("获取树菜单失败");
+           throw new SystemException("获取树菜单失败");
        }
     }
 
@@ -49,7 +50,7 @@ public class MenuServiceImpl implements IMenuService {
            }
        }catch (Exception e){
            e.printStackTrace();
-           throw new RainbowException("保存菜单失败");
+           throw new SystemException("保存菜单失败");
        }
         return menu;
     }
@@ -61,12 +62,12 @@ public class MenuServiceImpl implements IMenuService {
             QueryWrapper<Menu> queryWrapper = new QueryWrapper<>();
             List<Menu> menus = menuMapper.selectList(queryWrapper.eq("PARENT_ID", menu.getMenuId()));
             if(!CollectionUtils.isEmpty(menus)){
-                throw new RainbowException("该菜单有子菜单不允许删除");
+                throw new SystemException("该菜单有子菜单不允许删除");
             }
             menuMapper.deleteById(menuId);
         }catch (Exception e){
             e.printStackTrace();
-            throw new RainbowException("删除菜单失败");
+            throw new SystemException("删除菜单失败");
         }
     }
 
@@ -77,24 +78,24 @@ public class MenuServiceImpl implements IMenuService {
             return buildTree(menus);
         }catch (Exception e){
             e.printStackTrace();
-            throw new RainbowException("构建用户菜单失败");
+            throw new SystemException("构建用户菜单失败");
         }
     }
 
     @Override
     public Map<String, Object> getUserInfo(String username) {
+        Map<String, Object> map = new HashMap<>();
      try {
          List<Menu> menus = getMenuTreeByUsername(username);
          List<Menu> userPermissions = menuMapper.findUserPermissions(username);
          List<String> perms = userPermissions.stream().map(Menu::getPerms).collect(Collectors.toList());
-         Map<String, Object> map = new HashMap<>();
          map.put("permissions",perms);
          map.put("routes",menus);
      }catch (Exception e){
          e.printStackTrace();
-         throw new RainbowException("获取用户权限信息失败");
+         throw new SystemException("获取用户权限信息失败");
      }
-        return null;
+        return map;
     }
 
     /**
@@ -116,7 +117,7 @@ public class MenuServiceImpl implements IMenuService {
             }
         }catch (Exception e){
             e.printStackTrace();
-            throw new RainbowException("构建树菜单失败");
+            throw new SystemException("构建树菜单失败");
         }
         return menuTree;
     }

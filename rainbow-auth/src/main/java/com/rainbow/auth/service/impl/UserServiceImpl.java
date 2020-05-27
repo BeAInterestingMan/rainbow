@@ -1,6 +1,7 @@
 package com.rainbow.auth.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
+import com.rainbow.auth.exception.AuthException;
 import com.rainbow.auth.mapper.MenuMapper;
 import com.rainbow.auth.mapper.UserMapper;
 import com.rainbow.auth.service.IUserService;
@@ -9,6 +10,8 @@ import com.rainbow.common.core.entity.system.SystemUser;
 import com.rainbow.common.core.entity.system.UserDataPermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,7 +40,7 @@ public class UserServiceImpl implements IUserService {
             return user;
         }catch (Exception e){
             e.printStackTrace();
-            throw new SecurityException("查询用户失败");
+            throw new AuthException("查询用户失败");
         }
     }
 
@@ -48,7 +51,7 @@ public class UserServiceImpl implements IUserService {
             return userPermissions.stream().map(Menu::getPerms).collect(Collectors.joining(StringPool.COMMA));
         }catch (Exception e){
             e.printStackTrace();
-            throw new SecurityException("查询用户失败");
+            throw new AuthException("查询用户失败");
         }
     }
 }
