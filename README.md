@@ -104,11 +104,17 @@ rainbow模块：
 
 服务名称 | 端口 | 描述
 ---|---|---
-rainbow-Auth| 8881| 微服务认证服务器 
-rainbow-server-System| 8883 | 微服务子系统（资源服务器）
+rainbow-Auth| 8881| 微服务认证授权
+rainbow-server-System| 8883 | 系统资源微服务
 nacos| 8848 | 注册中心
 rainbow-gateway| 8882 |微服务网关
-rainbow-bus| 8884 |微服务消息系统
+rainbow-bus| 8885 |消息微服务
+rainbow-search| 8886 |全文检索微服务
+rainbow-cannal| 8887 |数据同步微服务
+rainbow-upload| 8888 |文件上传微服务
+rainbow-log| 8889 |日志微服务
+rainbow-apm| 8889 |监控微服务
+rainbow-gen| 8889 |逆向工程
 
 ### 目录结构
 ```
@@ -121,7 +127,7 @@ rainbow-bus| 8884 |微服务消息系统
 ├─rainbow-gateway                                               -----  微服务网关
 └─rainbow-server                                                ------ 资源服务器
 │   ├─rainbow-system-api                                        ------ 资源服务器api
-│   └─rainbow-system-server                                     ------ 资源服务器业务处理
+│   └─rainbow-system-server                                     ------ 资源服务器业务
 ├─rainbow-bus                                                   ------ 消息微服务  
 ├─rainbow-upload                                                ------ 文件上传服务  
 ├─rainbow-log                                                   ------ 日志服务  
