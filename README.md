@@ -85,7 +85,7 @@ rainbow是一款使用Spring Cloud Hoxton.RELEASE、Spring Cloud OAuth2 & Spring
     3.实现登录成功发送邮件功能
 
 
-10.整合elasticSeach搭建search服务(待完成)
+10.搭建rainbow-search全文检索服务(待完成)
 
 11.搭建rainbow-cannal数据同步服务(待完成)
 
