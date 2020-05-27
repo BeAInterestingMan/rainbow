@@ -113,8 +113,8 @@ rainbow-search| 8886 |全文检索微服务
 rainbow-cannal| 8887 |数据同步微服务
 rainbow-upload| 8888 |文件上传微服务
 rainbow-log| 8889 |日志微服务
-rainbow-apm| 8889 |监控微服务
-rainbow-gen| 8890 |逆向工程
+rainbow-apm| 8890 |监控微服务
+rainbow-gen| 8891 |逆向工程
 
 ### 目录结构
 ```
