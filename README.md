@@ -114,7 +114,7 @@ rainbow-cannal| 8887 |数据同步微服务
 rainbow-upload| 8888 |文件上传微服务
 rainbow-log| 8889 |日志微服务
 rainbow-apm| 8889 |监控微服务
-rainbow-gen| 8889 |逆向工程
+rainbow-gen| 8890 |逆向工程
 
 ### 目录结构
 ```
