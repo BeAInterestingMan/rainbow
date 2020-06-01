@@ -85,15 +85,17 @@ rainbow是一款使用Spring Cloud Hoxton.RELEASE、Spring Cloud OAuth2 & Spring
     3.实现登录成功发送邮件功能
 
 
-10.整合elasticSeach搭建search服务(待完成)
+10.搭建rainbow-search全文检索服务(待完成)
 
-11.搭建rainbow-upload文件上传服务(待完成)
+11.搭建rainbow-cannal数据同步服务(待完成)
 
-12.搭建rainbow-log日志服务(待完成)
+12.搭建rainbow-upload文件上传服务(待完成)
 
-13.搭建rainbow-apm监控服务(待完成)
+13.搭建rainbow-log日志服务(待完成)
 
-13.搭建rainbow-gen逆向工程生成代码(待完成)
+14.搭建rainbow-apm监控服务(待完成)
+
+15.搭建rainbow-gen逆向工程生成代码(待完成)
 
 
 ### 服务模块
@@ -102,11 +104,17 @@ rainbow模块：
 
 服务名称 | 端口 | 描述
 ---|---|---
-rainbow-Auth| 8881| 微服务认证服务器 
-rainbow-server-System| 8883 | 微服务子系统（资源服务器）
+rainbow-auth| 8881| 微服务认证授权
+rainbow-server-system| 8883 | 系统资源微服务
 nacos| 8848 | 注册中心
 rainbow-gateway| 8882 |微服务网关
-rainbow-bus| 8884 |微服务消息系统
+rainbow-bus| 8885 |消息微服务
+rainbow-search| 8886 |全文检索微服务
+rainbow-cannal| 8887 |数据同步微服务
+rainbow-upload| 8888 |文件上传微服务
+rainbow-log| 8889 |日志微服务
+rainbow-apm| 8890 |监控微服务
+rainbow-gen| 8891 |逆向工程
 
 ### 目录结构
 ```
@@ -119,11 +127,13 @@ rainbow-bus| 8884 |微服务消息系统
 ├─rainbow-gateway                                               -----  微服务网关
 └─rainbow-server                                                ------ 资源服务器
 │   ├─rainbow-system-api                                        ------ 资源服务器api
-│   └─rainbow-system-server                                     ------ 资源服务器业务处理
+│   └─rainbow-system-server                                     ------ 资源服务器业务
 ├─rainbow-bus                                                   ------ 消息微服务  
 ├─rainbow-upload                                                ------ 文件上传服务  
 ├─rainbow-log                                                   ------ 日志服务  
 ├─rainbow-apm                                                   ------ 监控服务  
+├─rainbow-search                                                ------ 全文检索服务  
+├─rainbow-cannal                                                ------ 数据同步服务  
 ```
 
 
