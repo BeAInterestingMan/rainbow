@@ -11,7 +11,7 @@ import java.util.List;
  *  @author liuhu
  *  @Date 2020/5/26 16:48
  */
-public interface IRoleMenuService{
+public interface RoleMenuService{
 
    /**
     * @Description 删除角色菜单关联数据

@@ -3,24 +3,19 @@ package com.rainbow.server.system.service.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.ArrayUtils;
-import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.rainbow.common.core.entity.QueryRequest;
 import com.rainbow.common.core.entity.system.Role;
 import com.rainbow.common.core.entity.system.RoleMenu;
-import com.rainbow.common.core.entity.system.UserRole;
 import com.rainbow.server.system.service.exception.SystemException;
 import com.rainbow.server.system.service.mapper.RoleMapper;
 import com.rainbow.server.system.service.mapper.RoleMenuMapper;
-import com.rainbow.server.system.service.mapper.UserRoleMapper;
-import com.rainbow.server.system.service.service.IRoleMenuService;
-import com.rainbow.server.system.service.service.IRoleService;
-import com.rainbow.server.system.service.service.IUserRoleService;
+import com.rainbow.server.system.service.service.RoleMenuService;
+import com.rainbow.server.system.service.service.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 
 /**
@@ -30,11 +25,11 @@ import java.util.Arrays;
  */
 @Service
 @RequiredArgsConstructor
-public class RoleServiceImpl implements IRoleService {
+public class RoleServiceImpl implements RoleService {
 
     private final RoleMapper roleMapper;
 
-    private final IRoleMenuService roleMenuService;
+    private final RoleMenuService roleMenuService;
 
     private final RoleMenuMapper roleMenuMapper;
 

@@ -8,7 +8,7 @@ import java.util.List;
  *  @author liuhu
  *  @Date 2020/5/26 16:48
  */
-public interface IUserRoleService{
+public interface UserRoleService{
 
 
     /**

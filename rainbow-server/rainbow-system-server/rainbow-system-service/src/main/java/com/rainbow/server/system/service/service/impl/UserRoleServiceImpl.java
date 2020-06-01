@@ -2,16 +2,14 @@ package com.rainbow.server.system.service.service.impl;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.rainbow.common.core.entity.system.UserRole;
 import com.rainbow.server.system.service.exception.SystemException;
 import com.rainbow.server.system.service.mapper.UserRoleMapper;
-import com.rainbow.server.system.service.service.IUserRoleService;
+import com.rainbow.server.system.service.service.UserRoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,7 +20,7 @@ import java.util.List;
 @Service
 @Transactional(rollbackFor = Exception.class)
 @RequiredArgsConstructor
-public class UserRoleServiceImpl implements IUserRoleService {
+public class UserRoleServiceImpl implements UserRoleService {
 
     private final UserRoleMapper userRoleMapper;
 

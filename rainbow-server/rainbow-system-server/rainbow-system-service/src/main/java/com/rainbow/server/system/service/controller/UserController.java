@@ -5,7 +5,7 @@ import com.rainbow.bus.api.feign.RainbowMailFeign;
 import com.rainbow.common.core.entity.QueryRequest;
 import com.rainbow.common.core.entity.system.SystemUser;
 import com.rainbow.common.core.utils.RainbowUtil;
-import com.rainbow.server.system.service.service.IUserService;
+import com.rainbow.server.system.service.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -28,7 +28,7 @@ public class UserController {
 
     private final RainbowMailFeign rainbowMailFeign;
 
-    private final IUserService userService;
+    private final UserService userService;
     /**
      * @Description 登录成功回调
      * @author liuhu

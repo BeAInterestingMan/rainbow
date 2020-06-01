@@ -3,10 +3,9 @@ package com.rainbow.server.system.service.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.rainbow.common.core.entity.system.Menu;
-import com.rainbow.common.core.exception.RainbowException;
 import com.rainbow.server.system.service.exception.SystemException;
 import com.rainbow.server.system.service.mapper.MenuMapper;
-import com.rainbow.server.system.service.service.IMenuService;
+import com.rainbow.server.system.service.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -23,7 +22,7 @@ import java.util.stream.Collectors;
  *  @Date 2020/5/15 10:23
  */
 @Service
-public class MenuServiceImpl implements IMenuService {
+public class MenuServiceImpl implements MenuService {
 
     @Autowired
     private MenuMapper menuMapper;

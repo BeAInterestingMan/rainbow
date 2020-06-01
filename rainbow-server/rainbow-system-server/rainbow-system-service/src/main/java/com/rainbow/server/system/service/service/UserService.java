@@ -9,7 +9,7 @@ import com.rainbow.common.core.entity.system.SystemUser;
  *  @author liuhu
  *  @Date 2020/5/15 10:15
  */
-public interface IUserService {
+public interface UserService {
     /**
      * @Description 得到用户
      * @author liuhu

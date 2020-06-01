@@ -14,6 +14,7 @@
         <module>rainbow-server</module>
         <module>rainbow-gateway</module>
         <module>rainbow-bus</module>
+        <module>rainbow-log</module>
     </modules>
     <description>rainbow微服务</description>
     <!--springboot版本号-->
@@ -33,6 +34,7 @@
         <dynamic-datasource.version>2.5.7</dynamic-datasource.version>
         <p6spy.version>3.8.5</p6spy.version>
         <easy-captcha.version>1.6.2</easy-captcha.version>
+        <ip2region.version>1.7</ip2region.version>
     </properties>
 
     <!--规定子工程依赖版本  不需要写版本号-->

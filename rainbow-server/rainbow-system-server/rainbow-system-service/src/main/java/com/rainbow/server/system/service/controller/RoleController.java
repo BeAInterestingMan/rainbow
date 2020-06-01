@@ -3,7 +3,7 @@ package com.rainbow.server.system.service.controller;
 import com.rainbow.common.core.entity.QueryRequest;
 import com.rainbow.common.core.entity.system.Role;
 import com.rainbow.common.core.utils.RainbowUtil;
-import com.rainbow.server.system.service.service.IRoleService;
+import com.rainbow.server.system.service.service.RoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class RoleController {
 
-    private final IRoleService roleService;
+    private final RoleService roleService;
 
 
     /**
@@ -79,5 +79,4 @@ public class RoleController {
        roleService.deleteRole(roleIds);
        return ResponseEntity.ok().build();
    }
-
 }

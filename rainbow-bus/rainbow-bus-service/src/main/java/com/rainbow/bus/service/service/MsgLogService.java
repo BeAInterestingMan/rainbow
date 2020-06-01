@@ -11,7 +11,7 @@ import java.util.List;
  *  @Date 2020/5/22 17:40
  */
 
-public interface IMsgLogService{
+public interface MsgLogService{
    /**
     * @Description 修改消息状态
     * @author liuhu

@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rainbow.common.core.entity.CurrentUser;
+import com.rainbow.common.core.entity.RainbowAuthUser;
 import com.rainbow.common.core.entity.TableData;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -17,11 +18,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 /**
@@ -178,4 +183,43 @@ public class RainbowUtil {
         return tableData;
     }
 
+    /**
+     * @Description 获得用户名
+     * @author liuhu
+     * @createTime 2020-05-29 17:16:51
+     * @param
+     * @return java.lang.String
+     */
+    public static String getCurrentUsername() {
+        Object principal = getOauth2Authentication().getPrincipal();
+        if (principal instanceof RainbowAuthUser) {
+            return ((RainbowAuthUser) principal).getUsername();
+        }
+        return (String) getOauth2Authentication().getPrincipal();
+    }
+
+
+    public static HttpServletRequest getHttpServletRequest() {
+        return ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
+    }
+
+    /**
+     * 获取请求IP
+     *
+     * @return String IP
+     */
+    public static String getHttpServletRequestIpAddress() {
+        HttpServletRequest request = getHttpServletRequest();
+        String ip = request.getHeader("x-forwarded-for");
+        if (ip == null || ip.length() == 0 || UNKNOW.equalsIgnoreCase(ip)) {
+            ip = request.getHeader("Proxy-Client-IP");
+        }
+        if (ip == null || ip.length() == 0 || UNKNOW.equalsIgnoreCase(ip)) {
+            ip = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if (ip == null || ip.length() == 0 || UNKNOW.equalsIgnoreCase(ip)) {
+            ip = request.getRemoteAddr();
+        }
+        return "0:0:0:0:0:0:0:1".equals(ip) ? "127.0.0.1" : ip;
+    }
 }

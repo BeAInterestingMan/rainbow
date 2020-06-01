@@ -4,14 +4,12 @@ import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.rainbow.auth.exception.AuthException;
 import com.rainbow.auth.mapper.MenuMapper;
 import com.rainbow.auth.mapper.UserMapper;
-import com.rainbow.auth.service.IUserService;
+import com.rainbow.auth.service.UserService;
 import com.rainbow.common.core.entity.system.Menu;
 import com.rainbow.common.core.entity.system.SystemUser;
 import com.rainbow.common.core.entity.system.UserDataPermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,7 +20,7 @@ import java.util.stream.Collectors;
  *  @Date 2020/5/15 10:23
  */
 @Service
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl implements UserService {
     
     @Autowired
     private UserMapper userMapper;

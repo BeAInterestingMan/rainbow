@@ -43,6 +43,7 @@
     <orderEntry type="library" name="Maven: org.springframework.plugin:spring-plugin-metadata:1.2.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.mapstruct:mapstruct:1.2.0.Final" level="project" />
     <orderEntry type="library" name="Maven: io.springfox:springfox-swagger-ui:2.9.2" level="project" />
+    <orderEntry type="library" name="Maven: org.lionsoul:ip2region:1.7" level="project" />
     <orderEntry type="library" name="Maven: cn.afterturn:easypoi-spring-boot-starter:4.1.0" level="project" />
     <orderEntry type="library" name="Maven: cn.afterturn:easypoi-web:4.1.0" level="project" />
     <orderEntry type="library" name="Maven: cn.afterturn:easypoi-base:4.1.0" level="project" />

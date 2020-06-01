@@ -1,6 +1,6 @@
 package com.rainbow.auth.filter;
 
-import com.rainbow.auth.service.ICaptchaService;
+import com.rainbow.auth.service.CaptchaService;
 import com.rainbow.common.core.constant.CaptchaConstant;
 import com.rainbow.common.core.constant.EndpointConstant;
 import com.rainbow.common.core.constant.GrantTypeConstant;
@@ -31,7 +31,7 @@ import java.io.IOException;
 public class ValidateCaptchaFilter extends OncePerRequestFilter {
 
     @Autowired
-    private ICaptchaService captchaService;
+    private CaptchaService captchaService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {

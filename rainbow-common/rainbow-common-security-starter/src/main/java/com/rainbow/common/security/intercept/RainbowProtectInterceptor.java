@@ -1,16 +1,9 @@
 package com.rainbow.common.security.intercept;
 
-import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.rainbow.common.core.constant.RainbowConstant;
 import com.rainbow.common.core.entity.RainbowResponse;
 import com.rainbow.common.core.utils.RainbowUtil;
-import com.rainbow.common.security.properties.RainbowCloudSecurityProperties;
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
-import org.springframework.util.AntPathMatcher;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.servlet.HandlerInterceptor;
 

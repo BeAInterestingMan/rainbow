@@ -22,19 +22,19 @@ spring:
         max-pool-size: 15
         min-idle: 5
         connection-test-query: select 1
-        pool-name: FebsHikariCP
+        pool-name: HikariCP
       primary: base
       datasource:
         base:
           username: root
           password: 123456
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://129.211.60.109:3306/rainbow?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
+          url: jdbc:mysql://182.92.105.91:3306/rainbow?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
 
   #redis
   redis:
     database: 0
-    host: 129.211.60.109
+    host: 182.92.105.91
     port: 6379
     lettuce:
       pool:
@@ -46,7 +46,7 @@ spring:
 
     #rabbitMq
   rabbitmq:
-    host: 129.211.60.109
+    host: 182.92.105.91
     password: guest
     port: 5672
     username: guest

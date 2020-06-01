@@ -3,7 +3,7 @@ package com.rainbow.bus.service.proxy;
 import com.rabbitmq.client.Channel;
 import com.rainbow.bus.api.entity.MsgLog;
 import com.rainbow.bus.service.constant.MsgConstant;
-import com.rainbow.bus.service.service.IMsgLogService;
+import com.rainbow.bus.service.service.MsgLogService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
@@ -18,9 +18,9 @@ import java.util.Map;
 @Slf4j
 public class BaseConsumerProxy {
     private Object target;
-    private IMsgLogService msgLogService;
+    private MsgLogService msgLogService;
 
-    public BaseConsumerProxy(Object target, IMsgLogService msgLogService) {
+    public BaseConsumerProxy(Object target, MsgLogService msgLogService) {
         this.target = target;
         this.msgLogService = msgLogService;
     }

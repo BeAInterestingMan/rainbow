@@ -8,7 +8,7 @@ import java.util.List;
  *  @author liuhu
  *  @Date 2020/5/27 10:32
  */
-public interface IUserDataPermissionService {
+public interface UserDataPermissionService {
 
     /**
      * @Description 通过部门ID删除关联关系

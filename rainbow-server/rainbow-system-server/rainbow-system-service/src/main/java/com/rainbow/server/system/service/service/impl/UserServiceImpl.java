@@ -15,9 +15,9 @@ import com.rainbow.server.system.service.mapper.MenuMapper;
 import com.rainbow.server.system.service.mapper.UserDataPermissionMapper;
 import com.rainbow.server.system.service.mapper.UserMapper;
 import com.rainbow.server.system.service.mapper.UserRoleMapper;
-import com.rainbow.server.system.service.service.IUserDataPermissionService;
-import com.rainbow.server.system.service.service.IUserRoleService;
-import com.rainbow.server.system.service.service.IUserService;
+import com.rainbow.server.system.service.service.UserDataPermissionService;
+import com.rainbow.server.system.service.service.UserRoleService;
+import com.rainbow.server.system.service.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
  */
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
 
@@ -42,9 +42,9 @@ public class UserServiceImpl implements IUserService {
 
     private final UserRoleMapper userRoleMapper;
 
-    private final IUserRoleService userRoleService;
+    private final UserRoleService userRoleService;
 
-    private final IUserDataPermissionService dataPermissionService;
+    private final UserDataPermissionService dataPermissionService;
 
     private final PasswordEncoder passwordEncoder;
 

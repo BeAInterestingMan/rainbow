@@ -4,7 +4,7 @@ package com.rainbow.server.system.service.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.rainbow.common.core.entity.system.RoleMenu;
 import com.rainbow.server.system.service.mapper.RoleMenuMapper;
-import com.rainbow.server.system.service.service.IRoleMenuService;
+import com.rainbow.server.system.service.service.RoleMenuService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +19,7 @@ import java.util.List;
 @Service
 @Transactional(rollbackFor = Exception.class)
 @RequiredArgsConstructor
-public class RoleMenuServiceImpl  implements IRoleMenuService {
+public class RoleMenuServiceImpl  implements RoleMenuService {
 
     private final RoleMenuMapper roleMenuMapper;
 

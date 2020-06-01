@@ -5,11 +5,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.rainbow.common.core.entity.system.Menu;
 import com.rainbow.common.core.utils.ExcelUtils;
 import com.rainbow.server.system.service.mapper.MenuMapper;
-import com.rainbow.server.system.service.service.IMenuService;
+import com.rainbow.server.system.service.service.MenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +28,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MenuController {
     
-    private final IMenuService menuService;
+    private final MenuService menuService;
 
     private final MenuMapper menuMapper;
 

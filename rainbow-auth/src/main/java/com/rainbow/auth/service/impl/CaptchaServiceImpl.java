@@ -1,7 +1,7 @@
 package com.rainbow.auth.service.impl;
 
 import com.rainbow.auth.properties.CaptchaProperties;
-import com.rainbow.auth.service.ICaptchaService;
+import com.rainbow.auth.service.CaptchaService;
 import com.rainbow.common.core.constant.CaptchaConstant;
 import com.rainbow.common.core.exception.RainbowException;
 import com.rainbow.common.redis.service.RedisService;
@@ -24,7 +24,7 @@ import java.io.IOException;
  *  @Date 2020/5/13 13:33
  */
 @Service
-public class CaptchaService implements ICaptchaService {
+public class CaptchaServiceImpl implements CaptchaService {
     
     @Autowired
     private RedisService redisService;

@@ -13,4 +13,8 @@ public interface RainbowConstant {
     String DEFAULT_PASSWORD = "rainbow";
 
     String DEFAULT_AVATAR = "default.jpg";
+    /**
+     * Java默认临时目录
+     */
+    public static final String JAVA_TEMP_DIR = "java.io.tmpdir";
 }

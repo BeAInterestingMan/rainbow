@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.rainbow.common.core.entity.system.UserDataPermission;
 import com.rainbow.server.system.service.exception.SystemException;
 import com.rainbow.server.system.service.mapper.UserDataPermissionMapper;
-import com.rainbow.server.system.service.service.IUserDataPermissionService;
+import com.rainbow.server.system.service.service.UserDataPermissionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +18,7 @@ import java.util.List;
 @Service
 @Transactional(rollbackFor = Exception.class)
 @RequiredArgsConstructor
-public class UserDataPermissionServiceImpl  implements IUserDataPermissionService {
+public class UserDataPermissionServiceImpl  implements UserDataPermissionService {
 
     private final UserDataPermissionMapper dataPermissionMapper;
 

@@ -10,7 +10,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author MrBird
+ *  @Description 用户实体
+ *  @author liuhu
+ *  @Date 2020/5/27 15:17
  */
 @Data
 @TableName("t_user")
@@ -44,6 +46,7 @@ public class SystemUser implements Serializable {
      * 性别保密
      */
     public static final String SEX_UNKNOW = "2";
+
     private static final long serialVersionUID = -4352868070794165001L;
     /**
      * 用户 ID

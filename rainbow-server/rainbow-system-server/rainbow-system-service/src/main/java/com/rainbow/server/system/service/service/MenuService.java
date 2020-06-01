@@ -10,7 +10,7 @@ import java.util.Map;
  *  @author liuhu
  *  @Date 2020/5/15 10:15
  */
-public interface IMenuService {
+public interface MenuService {
     /**
      * @Description 获得所有菜单集合  tree形式
      * @author liuhu

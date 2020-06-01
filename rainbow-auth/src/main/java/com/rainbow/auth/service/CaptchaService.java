@@ -9,7 +9,7 @@ import java.io.IOException;
  *  @author liuhu
  *  @Date 2020/5/13 14:51
  */
-public interface ICaptchaService {
+public interface CaptchaService {
     /**
      * @Description 生成验证码
      * @author liuhu

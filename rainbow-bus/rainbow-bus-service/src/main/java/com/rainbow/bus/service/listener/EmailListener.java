@@ -5,7 +5,7 @@ import com.rainbow.bus.service.constant.RainbowRabbitConstant;
 import com.rainbow.bus.service.consumer.EmailConsumer;
 import com.rainbow.bus.service.proxy.BaseConsumer;
 import com.rainbow.bus.service.proxy.BaseConsumerProxy;
-import com.rainbow.bus.service.service.IMsgLogService;
+import com.rainbow.bus.service.service.MsgLogService;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class EmailListener {
     private EmailConsumer emailConsumer;
 
     @Autowired
-    private IMsgLogService msgLogService;
+    private MsgLogService msgLogService;
 
     /**
      * @Description 执行逻辑

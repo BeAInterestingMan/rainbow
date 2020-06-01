@@ -1,6 +1,6 @@
 package com.rainbow.auth.service.impl;
 
-import com.rainbow.auth.service.IUserService;
+import com.rainbow.auth.service.UserService;
 import com.rainbow.common.core.entity.RainbowAuthUser;
 import com.rainbow.common.core.entity.system.SystemUser;
 import org.apache.commons.lang3.StringUtils;
@@ -27,7 +27,7 @@ import java.util.List;
 public class RainbowUserDetailService implements UserDetailsService {
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
