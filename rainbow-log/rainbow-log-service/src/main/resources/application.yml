@@ -1,0 +1,70 @@
+server:
+  port: 8886
+
+spring:
+  application:
+    name: rainbow-log
+
+
+  datasource:
+    dynamic:
+      hikari:
+        connection-timeout: 30000
+        max-lifetime: 1800000
+        max-pool-size: 15
+        min-idle: 5
+        connection-test-query: select 1
+        pool-name: HikariCP
+      primary: base
+      datasource:
+        base:
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://182.92.105.91:3306/rainbow?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
+
+  #redis
+  redis:
+    database: 0
+    host: 182.92.105.91
+    port: 6379
+    lettuce:
+      pool:
+        min-idle: 8
+        max-idle: 500
+        max-active: 2000
+        max-wait: 10000
+    timeout: 5000
+
+#开启feign熔断
+#feign:
+#  hystrix:
+#    enabled: true
+
+# 为了让feign获得token
+hystrix:
+  shareSecurityContext: true
+
+# 客户端的每一次请求都会去认证服务器校验token
+security:
+  oauth2:
+    resource:
+      id: ${spring.application.name}
+      user-info-uri: http://localhost:8882/auth/user
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.rainbow.common.core.entity
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    banner: false
+
+#自定义配置
+rainbow:
+  cloud:
+    security:
+      # 免认证url 多个逗号拼接
+      anonUris: /captcha,/swagger-ui.html,/webjars/**,/swagger-resources/**,/v2/api-docs/**
+      # 是否开启禁止请求绕过网关
+      enable: false
