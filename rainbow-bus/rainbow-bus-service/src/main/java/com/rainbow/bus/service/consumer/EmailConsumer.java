@@ -1,10 +1,11 @@
 package com.rainbow.bus.service.consumer;
 
-import com.alibaba.fastjson.JSONObject;
+
 import com.rabbitmq.client.Channel;
 import com.rainbow.bus.api.entity.RainbowMail;
 import com.rainbow.bus.service.exception.BusException;
 import com.rainbow.bus.service.proxy.BaseConsumer;
+import com.rainbow.bus.service.utils.MessageHelper;
 import org.springframework.amqp.core.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -27,7 +28,7 @@ public class EmailConsumer implements BaseConsumer {
     public void consume(Message message, Channel channel) throws IOException {
         try {
             // 解析邮件对象  发送邮件
-            RainbowMail rainbowMail = JSONObject.parseObject(String.valueOf(message.getBody()), RainbowMail.class);
+            RainbowMail rainbowMail = MessageHelper.msgToObj(message, RainbowMail.class);
             SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
             simpleMailMessage.setFrom(rainbowMail.getFromMailAddress());
             simpleMailMessage.setTo(rainbowMail.getToMailAddress());

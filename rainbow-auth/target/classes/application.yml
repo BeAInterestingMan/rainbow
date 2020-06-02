@@ -8,7 +8,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:8848
+        server-addr: 101.132.105.134:8848
 
   datasource:
     dynamic:
@@ -25,12 +25,12 @@ spring:
           username: root
           password: 123456
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://182.92.105.91:3306/rainbow?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
+          url: jdbc:mysql://101.132.105.134:3306/rainbow?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
 
 #redis
   redis:
     database: 0
-    host: 182.92.105.91
+    host: 101.132.105.134
     port: 6379
     lettuce:
       pool:

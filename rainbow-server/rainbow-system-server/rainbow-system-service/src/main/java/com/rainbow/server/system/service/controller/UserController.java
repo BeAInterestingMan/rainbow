@@ -2,6 +2,7 @@ package com.rainbow.server.system.service.controller;
 
 import com.rainbow.bus.api.entity.RainbowMail;
 import com.rainbow.bus.api.feign.RainbowMailFeign;
+import com.rainbow.common.core.constant.RainbowConstant;
 import com.rainbow.common.core.entity.QueryRequest;
 import com.rainbow.common.core.entity.system.SystemUser;
 import com.rainbow.common.core.utils.RainbowUtil;
@@ -14,6 +15,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  *  @Description 用户接口
@@ -38,15 +42,17 @@ public class UserController {
      */
     @GetMapping("success")
     @ApiOperation("登录成功回调")
-    public void success(){
+    public String success(){
+        sendEmail();
+        return "ok";
      // todo 记录登录日志  发送邮件
     }
     public void sendEmail(){
         RainbowMail rainbowMail = new RainbowMail();
+        rainbowMail.setFromMailAddress("1649471814@qq.com");
         rainbowMail.setToMailAddress("1649471814@qq.com");
-        rainbowMail.setToMailAddress("1649471814@qq.com");
-        rainbowMail.setSubject("11111");
-        rainbowMail.setText("111111");
+        rainbowMail.setSubject(RainbowConstant.LOGIN_MSG);
+        rainbowMail.setText("尊贵的用户"+RainbowUtil.getCurrentUsername()+"您好，您于"+ LocalDateTime.now() +"登录成功");
         rainbowMailFeign.send(rainbowMail);
     }
 
@@ -99,7 +105,7 @@ public class UserController {
      * @Description 重置密码
      * @author liuhu
      * @createTime 2020-05-26 17:31:04
-     * @param id
+     * @param userId
      * @return org.springframework.http.ResponseEntity
      */
     @PutMapping("password")

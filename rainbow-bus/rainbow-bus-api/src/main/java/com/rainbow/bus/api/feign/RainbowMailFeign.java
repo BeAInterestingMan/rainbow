@@ -26,6 +26,6 @@ public interface RainbowMailFeign {
      */
     @ApiOperation("发送邮件")
     @PostMapping("email")
-    ResponseEntity<Void> send(@RequestBody RainbowMail rainbowMail);
+    ResponseEntity send(@RequestBody RainbowMail rainbowMail);
 
 }

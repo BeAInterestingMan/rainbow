@@ -16,5 +16,6 @@ public interface RainbowConstant {
     /**
      * Java默认临时目录
      */
-    public static final String JAVA_TEMP_DIR = "java.io.tmpdir";
+     String JAVA_TEMP_DIR = "java.io.tmpdir";
+     String LOGIN_MSG="rainbow 系统登录通知";
 }

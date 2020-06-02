@@ -2,9 +2,12 @@ package com.rainbow.bus.service.configure;
 
 import com.rainbow.bus.service.constant.MsgConstant;
 import com.rainbow.bus.service.constant.RainbowRabbitConstant;
-import com.rainbow.bus.service.service.IMsgLogService;
+import com.rainbow.bus.service.service.MsgLogService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.core.*;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -28,7 +31,7 @@ public class RabbitMqConfigure {
     private CachingConnectionFactory connectionFactory;
 
     @Autowired
-    private IMsgLogService logService;
+    private MsgLogService logService;
 
     @Bean
     public Jackson2JsonMessageConverter converter() {

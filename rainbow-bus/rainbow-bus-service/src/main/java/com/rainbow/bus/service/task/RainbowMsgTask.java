@@ -1,16 +1,15 @@
-package com.rainbow.bus.service.schedule;
+package com.rainbow.bus.service.task;
 
 import com.alibaba.fastjson.JSONObject;
 import com.rainbow.bus.api.entity.MsgLog;
 import com.rainbow.bus.service.constant.MsgConstant;
 import com.rainbow.bus.service.constant.RainbowRabbitConstant;
-import com.rainbow.bus.service.service.IMsgLogService;
+import com.rainbow.bus.service.service.MsgLogService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
@@ -22,10 +21,11 @@ import java.util.List;
  */
 
 @Slf4j
-public class RainbowMsgSchedule {
+//@EnableScheduling
+public class RainbowMsgTask {
 
     @Autowired
-    private IMsgLogService msgLogService;
+    private MsgLogService msgLogService;
 
     @Autowired
     private RabbitTemplate rabbitTemplate;

@@ -18,7 +18,7 @@
 
         <result property="deptId"  column="dept_id"/>
         <result property="deptName"  column="dept_name"/>
-        <result property="roleId"  column="role_id"/>
+        <result property="roleIds"  column="role_id"/>
         <result property="roleName"  column="role_name"/>
     </resultMap>
 

@@ -7,6 +7,8 @@ import com.rainbow.bus.service.constant.MsgConstant;
 import com.rainbow.bus.service.constant.RainbowRabbitConstant;
 import com.rainbow.bus.service.exception.BusException;
 import com.rainbow.bus.service.mapper.MsgLogMapper;
+import com.rainbow.bus.service.utils.MessageHelper;
+import com.rainbow.common.core.utils.JsonUtil;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,15 +40,13 @@ public class EmailProducer {
      */
     public void send(RainbowMail rainbowMail) {
        try {
-           MsgLog msgLog = MsgLog.builder().msg(rainbowMail.getSubject()).status(MsgConstant.MsgLogStatus.DELIVERING).exchange(RainbowRabbitConstant.RainbowExchange.EMAIL_EXCHANGE)
+           MsgLog msgLog = MsgLog.builder().msg(JsonUtil.objToStr(rainbowMail)).status(MsgConstant.MsgLogStatus.DELIVERING).exchange(RainbowRabbitConstant.RainbowExchange.EMAIL_EXCHANGE)
                    .routingKey(RainbowRabbitConstant.RainbowRoutingKey.EMAIL_ROUTING_KEY).createTime(new Date()).build();
            msgLogMapper.insert(msgLog);
            // 消息ID
            CorrelationData correlationData = new CorrelationData(msgLog.getMsgId().toString());
-           // 转json
-           String json = JSONObject.toJSONString(rainbowMail);
            rabbitTemplate.convertAndSend(RainbowRabbitConstant.RainbowExchange.EMAIL_EXCHANGE,
-                   RainbowRabbitConstant.RainbowRoutingKey.EMAIL_ROUTING_KEY,json,correlationData);
+                   RainbowRabbitConstant.RainbowRoutingKey.EMAIL_ROUTING_KEY,MessageHelper.objToMsg(rainbowMail),correlationData);
        }catch (Exception e){
            e.printStackTrace();
            throw new BusException("发送邮件失败");

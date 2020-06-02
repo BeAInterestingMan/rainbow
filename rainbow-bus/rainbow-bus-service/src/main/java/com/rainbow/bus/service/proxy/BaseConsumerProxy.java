@@ -7,6 +7,7 @@ import com.rainbow.bus.service.service.MsgLogService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.Proxy;
 import java.util.Map;
@@ -16,6 +17,7 @@ import java.util.Map;
  *  @Date 2020/5/23 14:59
  */
 @Slf4j
+@Transactional(rollbackFor = Exception.class)
 public class BaseConsumerProxy {
     private Object target;
     private MsgLogService msgLogService;
@@ -35,6 +37,7 @@ public class BaseConsumerProxy {
             String correlationId = getCorrelationId(message);
             if (isConsumed(correlationId)) {
                 log.info("重复消费, correlationId: {}", correlationId);
+                return null;
             }
             // rabbitMq亚奥知道那一条消息确认被消费 tag就是index标识
             MessageProperties properties = message.getMessageProperties();
@@ -48,7 +51,7 @@ public class BaseConsumerProxy {
                 channel.basicAck(tag, false);
                 return result;
             } catch (Exception e) {
-                log.error("getProxy error", e);
+                log.error("消息代理出现异常：", e);
                 //deliveryTag:该消息的index,multiple：是否批量.true:将一次性拒绝所有小于deliveryTag的消息。
                 //requeue：被拒绝的是否重新入队列
                 channel.basicNack(tag, false, true);
