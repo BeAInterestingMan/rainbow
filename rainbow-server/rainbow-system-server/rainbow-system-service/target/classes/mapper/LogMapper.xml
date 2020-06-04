@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainbow.log.service.mapper.LogMapper">
+
+  <!-- 基础返回结果集 -->
+  <resultMap id="logMap" type="com.rainbow.common.core.entity.system.Log">
+    <id property="id" column="ID"/>
+    <result property="username" column="USERNAME"/>
+    <result property="operation" column="OPERATION"/>
+    <result property="time" column="TIME"/>
+    <result property="method" column="METHOD"/>
+    <result property="params" column="PARAMS"/>
+    <result property="ip" column="IP"/>
+    <result property="createTime" column="CREATE_TIME"/>
+    <result property="location" column="location"/>
+  </resultMap>
+
+
+  <!-- 基础列 -->
+  <sql id="baseColumn">
+        ID,
+        USERNAME,
+        OPERATION,
+        TIME,
+        METHOD,
+        PARAMS,
+        IP,
+        CREATE_TIME,
+        location
+  </sql>
+
+</mapper>
