@@ -91,8 +91,6 @@ rainbow是一款使用Spring Cloud Hoxton.RELEASE、Spring Cloud OAuth2 & Spring
 
 12.搭建rainbow-upload文件上传服务(待完成)
 
-13.搭建rainbow-log日志服务(待完成)
-
 14.搭建rainbow-apm监控服务(待完成)
 
 15.搭建rainbow-gen逆向工程生成代码(待完成)
@@ -112,7 +110,6 @@ rainbow-bus| 8885 |消息微服务
 rainbow-search| 8886 |全文检索微服务
 rainbow-cannal| 8887 |数据同步微服务
 rainbow-upload| 8888 |文件上传微服务
-rainbow-log| 8889 |日志微服务
 rainbow-apm| 8890 |监控微服务
 rainbow-gen| 8891 |逆向工程
 
@@ -130,7 +127,6 @@ rainbow-gen| 8891 |逆向工程
 │   └─rainbow-system-server                                     ------ 资源服务器业务
 ├─rainbow-bus                                                   ------ 消息微服务  
 ├─rainbow-upload                                                ------ 文件上传服务  
-├─rainbow-log                                                   ------ 日志服务  
 ├─rainbow-apm                                                   ------ 监控服务  
 ├─rainbow-search                                                ------ 全文检索服务  
 ├─rainbow-cannal                                                ------ 数据同步服务  
