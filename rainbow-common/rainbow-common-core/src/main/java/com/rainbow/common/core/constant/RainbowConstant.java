@@ -18,4 +18,8 @@ public interface RainbowConstant {
      */
      String JAVA_TEMP_DIR = "java.io.tmpdir";
      String LOGIN_MSG="rainbow 系统登录通知";
+     interface log{
+//         String OPERATION_LOG=0;
+//         String OPERATION_LOG=1;
+     }
 }

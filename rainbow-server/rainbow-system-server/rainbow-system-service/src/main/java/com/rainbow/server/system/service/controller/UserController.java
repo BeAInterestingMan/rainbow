@@ -1,11 +1,13 @@
 package com.rainbow.server.system.service.controller;
 
-import com.rainbow.bus.api.entity.RainbowMail;
-import com.rainbow.bus.api.feign.RainbowMailFeign;
+
 import com.rainbow.common.core.constant.RainbowConstant;
 import com.rainbow.common.core.entity.QueryRequest;
 import com.rainbow.common.core.entity.system.SystemUser;
 import com.rainbow.common.core.utils.RainbowUtil;
+import com.rainbow.server.system.api.entity.dto.RainbowMail;
+import com.rainbow.server.system.service.annotation.RainbowLog;
+import com.rainbow.server.system.service.feign.RainbowMailFeign;
 import com.rainbow.server.system.service.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -17,7 +19,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  *  @Description 用户接口
@@ -41,6 +42,7 @@ public class UserController {
      * @return void
      */
     @GetMapping("success")
+    @RainbowLog(description = "登录")
     @ApiOperation("登录成功回调")
     public String success(){
         sendEmail();

@@ -1,4 +1,4 @@
-package com.rainbow.log.api.entity;
+package com.rainbow.common.core.entity.system;
 
 
 import com.baomidou.mybatisplus.annotation.IdType;

@@ -1,80 +1,43 @@
-package com.rainbow.log.api.aspect;
+package com.rainbow.server.system.service.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rainbow.common.core.utils.AddressUtil;
+import com.rainbow.common.core.entity.system.Log;
 import com.rainbow.common.core.utils.RainbowUtil;
-import com.rainbow.log.api.annotation.RainbowLog;
-import com.rainbow.log.api.entity.Log;
-import com.rainbow.log.api.feign.LogFeign;
+import com.rainbow.server.system.service.annotation.RainbowLog;
+import com.rainbow.server.system.service.mapper.LogMapper;
+import com.rainbow.server.system.service.service.LogService;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.*;
+
 /**
- *  @Description aop日志处理
+ *  @Description 用户操作日志表
  *  @author liuhu
- *  @Date 2020/5/29 17:08
+ *  @Date 2020-06-04 11:10:55
  */
-@Configuration
-@Aspect
+@Service
 @RequiredArgsConstructor
-public class RainbowLogAspect {
+public class LogServiceImpl implements LogService {
+
+    private final LogMapper logMapper;
+
     private final ObjectMapper objectMapper;
 
-    /**
-     * @Description 定义切点
-     * @author liuhu
-     * @createTime 2020-05-29 16:17:26
-     * @param
-     * @return void
-     */
-    @Pointcut("@annotation(com.rainbow.log.api.annotation.RainbowLog)")
-    public void pointcut(){
-
-    }
-
-    /**
-     * @Description 执行逻辑
-     * @author liuhu
-     * @createTime 2020-05-29 17:07:10
-     * @param joinPoint
-     * @return java.lang.Object
-     */
-    @Around("pointcut()")
-    public Object around(ProceedingJoinPoint joinPoint){
-        Object result=null;
-        try {
-            saveLog(joinPoint);
-            result= joinPoint.proceed();
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
-        return result;
-    }
-
-    /**
-     * @Description 保存日志
-     * @author liuhu
-     * @createTime 2020-05-29 17:07:27
-     * @param joinPoint
-     * @return void
-     */
-    private void saveLog(ProceedingJoinPoint joinPoint) {
+    @Override
+    public void saveLog(ProceedingJoinPoint joinPoint,String username,String ip) {
         Log log = new Log();
         long start = System.currentTimeMillis();
         MethodSignature signature = (MethodSignature)joinPoint.getSignature();
         Method method = signature.getMethod();
         String methodName = method.getName();
-        String ip = RainbowUtil.getHttpServletRequestIpAddress();
+//        String ip = RainbowUtil.getHttpServletRequestIpAddress();
         // 类名称
         String className = joinPoint.getTarget().getClass().getName();
         Object[] args = joinPoint.getArgs();
@@ -90,15 +53,14 @@ public class RainbowLogAspect {
         long end = System.currentTimeMillis();
         log.setOperation(description);
         log.setMethod(className + "." + methodName + "()");
-        String username = RainbowUtil.getCurrentUsername();
         log.setUsername(username);
         log.setIp(ip);
-        log.setLocation(AddressUtil.getCityInfo(ip));
+//        log.setLocation(AddressUtil.getCityInfo(ip));
+        log.setLocation("");
         log.setTime(end-start);
-        // todo 增加日志
-
+        log.setCreateTime(new Date());
+        logMapper.insert(log);
     }
-
 
     /**
      * @Description 处理方法参数
