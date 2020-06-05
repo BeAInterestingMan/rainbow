@@ -39,5 +39,14 @@ spring:
               args:
                 name: bus-fallback
                 fallbackUri: forward:/fallback/rainbow-bus
+        - id: rainbow-upload
+          uri: lb://rainbow-upload
+          predicates:
+            - Path=/upload/**
+          filters:
+            - name: Hystrix
+              args:
+                name: rainbow-upload
+                fallbackUri: forward:/fallback/rainbow-upload
       default-filters:
         - StripPrefix=1

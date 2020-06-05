@@ -14,7 +14,6 @@
         <module>rainbow-common-redis-starter</module>
         <module>rainbow-common-datasource-starter</module>
         <module>rainbow-common-security-starter</module>
-        <module>rainbow-common-log-starter</module>
     </modules>
     <artifactId>rainbow-common</artifactId>
     <description>通用工程</description>
