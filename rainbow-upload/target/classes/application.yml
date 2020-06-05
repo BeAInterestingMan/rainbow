@@ -1,0 +1,59 @@
+server:
+  port: 8886
+
+spring:
+  application:
+    name: rainbow-upload
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  #注册nacos
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 101.132.105.134:8848
+
+  datasource:
+    dynamic:
+      hikari:
+        connection-timeout: 30000
+        max-lifetime: 1800000
+        max-pool-size: 15
+        min-idle: 5
+        connection-test-query: select 1
+        pool-name: HikariCP
+      primary: base
+      datasource:
+        base:
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://101.132.105.134:3306/rainbow?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
+
+#开启feign熔断
+#feign:
+#  hystrix:
+#    enabled: true
+
+# 为了让feign获得token
+hystrix:
+  shareSecurityContext: true
+
+# 客户端的每一次请求都会去认证服务器校验token
+security:
+  oauth2:
+    resource:
+      id: ${spring.application.name}
+      user-info-uri: http://localhost:8882/auth/user
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.rainbow.upload.entity
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    banner: false
+
