@@ -5,16 +5,28 @@ import org.csource.common.NameValuePair;
 import org.csource.fastdfs.*;
 import org.springframework.core.io.ClassPathResource;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.util.Properties;
+
 @Slf4j
 public class FastDFSClient {
 
 	static {
 		try {
-			String filePath = new ClassPathResource("fdfs_client.conf").getFile().getAbsolutePath();;
-			ClientGlobal.init(filePath);
+//			String filePath = new ClassPathResource("fdfs_client.conf").getFile().getAbsolutePath();;
+//			ClientGlobal.init(filePath);
+           // 解决 linux 读不到配置文件问题
+			Properties pps = new Properties();
+			// 斜杠一定要，表示从当前本件的classpath开始读取
+			InputStream stream = FastDFSClient.class.getResourceAsStream("/fdfs_client.conf");
+			StringBuilder sb = new StringBuilder();
+			String line;
+			BufferedReader br = new BufferedReader(new InputStreamReader(stream));
+			while ((line = br.readLine()) != null) {
+				String[] str = line.split("=");
+				pps.setProperty(str[0],str[1]);
+			}
+			ClientGlobal.initByProperties(pps);
 		} catch (Exception e) {
 			log.error("FastDFS Client Init Fail!",e);
 		}
