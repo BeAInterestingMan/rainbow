@@ -78,7 +78,7 @@ rainbow是一款使用Spring Cloud Hoxton.RELEASE、Spring Cloud OAuth2 & Spring
 
 9.搭建rainbow-bus 消息服务
 
-    1.利用动态代理处理重复消费和消息1丢失的问题
+    1.利用动态代理处理重复消费和消息丢失的问题
 
     2.消息日志记录消息,利用定时任务对失败的消息重新投递
     
@@ -89,7 +89,7 @@ rainbow是一款使用Spring Cloud Hoxton.RELEASE、Spring Cloud OAuth2 & Spring
 
 11.搭建rainbow-cannal数据同步服务(待完成)
 
-12.搭建rainbow-upload文件上传服务(待完成)
+12.搭建rainbow-upload文件上传服务(利用fastDfs)
 
 14.搭建rainbow-apm监控服务(待完成)
 
