@@ -93,8 +93,9 @@ rainbow是一款使用Spring Cloud Hoxton.RELEASE、Spring Cloud OAuth2 & Spring
 
 14.搭建rainbow-apm监控服务(待完成)
 
-15.搭建rainbow-gen逆向工程生成代码(待完成)
+15.搭建rainbow-generator 逆向工程生成代码(待完成)
 
+16.搭建rainbow-job 定时任务(待完成)
 
 ### 服务模块
 
@@ -111,7 +112,7 @@ rainbow-search| 8886 |全文检索微服务
 rainbow-cannal| 8887 |数据同步微服务
 rainbow-upload| 8888 |文件上传微服务
 rainbow-apm| 8890 |监控微服务
-rainbow-gen| 8891 |逆向工程
+rainbow-generator| 8891 |逆向工程-代码生成器
 
 ### 目录结构
 ```
