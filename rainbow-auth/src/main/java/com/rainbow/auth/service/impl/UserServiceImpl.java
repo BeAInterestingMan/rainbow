@@ -10,6 +10,7 @@ import com.rainbow.common.core.entity.system.SystemUser;
 import com.rainbow.common.core.entity.system.UserDataPermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
  *  @Date 2020/5/15 10:23
  */
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class UserServiceImpl implements UserService {
     
     @Autowired

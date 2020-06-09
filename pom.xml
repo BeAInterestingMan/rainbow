@@ -15,6 +15,7 @@
         <module>rainbow-gateway</module>
         <module>rainbow-bus</module>
         <module>rainbow-upload</module>
+        <module>rainbow-generator</module>
     </modules>
     <description>rainbow微服务</description>
     <!--springboot版本号-->

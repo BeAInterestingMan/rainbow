@@ -1,0 +1,21 @@
+server:
+  port: 8891
+
+spring:
+  application:
+    name: rainbow-generator
+
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://101.132.105.134:3306/rainbow?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
+
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.rainbow.generator.entity
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    banner: false

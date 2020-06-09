@@ -8,6 +8,7 @@ import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 /**
@@ -16,6 +17,7 @@ import javax.sql.DataSource;
  *  @Date 2020/5/11 18:38
  */
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class RedisClientDetailsService extends JdbcClientDetailsService {
     @Autowired
     @SuppressWarnings("all")

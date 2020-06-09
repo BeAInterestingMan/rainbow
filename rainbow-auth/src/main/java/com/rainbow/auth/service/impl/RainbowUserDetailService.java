@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ import java.util.List;
  *  @Date 2020/5/12 18:32
  */
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class RainbowUserDetailService implements UserDetailsService {
 
     @Autowired
