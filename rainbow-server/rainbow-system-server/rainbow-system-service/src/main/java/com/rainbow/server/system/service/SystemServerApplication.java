@@ -12,7 +12,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  *  @author liuhu
  *  @Date 2020/5/13 13:09
  */
-@EnableFeignClients
+@EnableFeignClients("com.rainbow.server.system.api.feign")
 @SpringBootApplication
 @EnableRainbowResourceServer
 @EnableAsync

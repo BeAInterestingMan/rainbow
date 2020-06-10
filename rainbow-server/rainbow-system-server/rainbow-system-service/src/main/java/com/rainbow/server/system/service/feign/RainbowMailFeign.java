@@ -1,6 +1,6 @@
 package com.rainbow.server.system.service.feign;
 
-import com.rainbow.server.system.api.entity.dto.RainbowMail;
+import com.rainbow.server.system.api.dto.RainbowMail;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;

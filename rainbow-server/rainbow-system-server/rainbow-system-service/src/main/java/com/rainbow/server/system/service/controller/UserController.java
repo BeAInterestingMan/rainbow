@@ -5,7 +5,7 @@ import com.rainbow.common.core.constant.RainbowConstant;
 import com.rainbow.common.core.entity.QueryRequest;
 import com.rainbow.common.core.entity.system.SystemUser;
 import com.rainbow.common.core.utils.RainbowUtil;
-import com.rainbow.server.system.api.entity.dto.RainbowMail;
+import com.rainbow.server.system.api.dto.RainbowMail;
 import com.rainbow.server.system.service.annotation.RainbowLog;
 import com.rainbow.server.system.service.feign.RainbowMailFeign;
 import com.rainbow.server.system.service.service.UserService;

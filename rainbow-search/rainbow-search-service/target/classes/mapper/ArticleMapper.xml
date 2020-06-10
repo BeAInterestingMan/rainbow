@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainbow.mapper.ArticleMapper">
+    <!-- 基础返回结果集 -->
+    <resultMap id="ArticleMap" type="com.rainbow.search.api.entity.Article">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="category" column="category"/>
+        <result property="author" column="author"/>
+        <result property="content" column="content"/>
+        <result property="imagePath" column="image_path"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createId" column="create_id"/>
+        <result property="createName" column="create_name"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateId" column="update_id"/>
+        <result property="updateName" column="update_name"/>
+        <result property="isAudit" column="is_audit"/>
+        <result property="isDelete" column="is_delete"/>
+        <result property="auditTime" column="audit_time"/>
+        <result property="auditId" column="audit_id"/>
+    </resultMap>
+
+
+    <!-- 基础列 -->
+    <sql id="baseColumn">
+      id, title, category, author, content, image_path, create_time, create_id, create_name, update_time, update_id, update_name, is_audit, is_delete, audit_time,audit_id
+    </sql>
+</mapper>

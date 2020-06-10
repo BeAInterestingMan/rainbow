@@ -1,0 +1,11 @@
+server:
+  port: 8886
+
+spring:
+  application:
+    name: rainbow-search
+  data:
+    elasticsearch:
+      cluster-nodes: 127.0.0.1:9300
+      cluster-name: my-cluster
+

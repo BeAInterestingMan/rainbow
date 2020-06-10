@@ -48,5 +48,14 @@ spring:
               args:
                 name: rainbow-upload
                 fallbackUri: forward:/fallback/rainbow-upload
+        - id: rainbow-search
+          uri: lb://rainbow-search
+          predicates:
+            - Path=/search/**
+          filters:
+            - name: Hystrix
+              args:
+                name: rainbow-search
+                fallbackUri: forward:/fallback/rainbow-search
       default-filters:
         - StripPrefix=1

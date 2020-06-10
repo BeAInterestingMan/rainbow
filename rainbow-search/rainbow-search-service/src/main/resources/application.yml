@@ -1,0 +1,29 @@
+server:
+  port: 8886
+
+
+spring:
+  application:
+    name: rainbow-search
+
+  #注册nacos
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 101.132.105.134:8848
+
+  data:
+    elasticsearch:
+      cluster-nodes: 127.0.0.1:9300
+      cluster-name: my-cluster
+
+# 为了让feign获得token
+hystrix:
+  shareSecurityContext: true
+
+# 客户端的每一次请求都会去认证服务器校验token
+security:
+  oauth2:
+    resource:
+      id: ${spring.application.name}
+      user-info-uri: http://localhost:8882/auth/user
