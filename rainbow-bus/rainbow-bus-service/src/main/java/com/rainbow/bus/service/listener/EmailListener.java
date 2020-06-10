@@ -6,6 +6,7 @@ import com.rainbow.bus.service.consumer.EmailConsumer;
 import com.rainbow.bus.service.proxy.BaseConsumer;
 import com.rainbow.bus.service.proxy.BaseConsumerProxy;
 import com.rainbow.bus.service.service.MsgLogService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,12 @@ import java.io.IOException;
  *  @Date 2020/5/23 15:21
  */
 @Component
+@RequiredArgsConstructor
 public class EmailListener {
 
-    @Autowired
-    private EmailConsumer emailConsumer;
+    private final EmailConsumer emailConsumer;
 
-    @Autowired
-    private MsgLogService msgLogService;
+    private final MsgLogService msgLogService;
 
     /**
      * @Description 执行逻辑

@@ -7,6 +7,7 @@ import com.rainbow.common.core.constant.GrantTypeConstant;
 import com.rainbow.common.core.constant.ParamsConstant;
 import com.rainbow.common.core.entity.RainbowResponse;
 import com.rainbow.common.core.utils.RainbowUtil;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,11 @@ import java.io.IOException;
  */
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class ValidateCaptchaFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private CaptchaService captchaService;
+
+    private final CaptchaService captchaService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {

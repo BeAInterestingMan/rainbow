@@ -4,6 +4,7 @@ import com.rainbow.bus.api.entity.RainbowMail;
 import com.rainbow.bus.service.product.EmailProducer;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +17,10 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "邮件服务")
 @RestController
 @RequestMapping("email")
+@RequiredArgsConstructor
 public class EmailController {
 
-    @Autowired
-    private EmailProducer producer;
+    private final EmailProducer producer;
 
     /**
      * @Description 发送邮件

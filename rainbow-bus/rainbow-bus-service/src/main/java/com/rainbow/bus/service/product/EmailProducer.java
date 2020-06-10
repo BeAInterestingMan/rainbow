@@ -9,6 +9,7 @@ import com.rainbow.bus.service.exception.BusException;
 import com.rainbow.bus.service.mapper.MsgLogMapper;
 import com.rainbow.bus.service.utils.MessageHelper;
 import com.rainbow.common.core.utils.JsonUtil;
+import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +25,11 @@ import java.util.Date;
  */
 @Service
 @Transactional(rollbackFor = Exception.class)
+@RequiredArgsConstructor
 public class EmailProducer {
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
+    private final RabbitTemplate rabbitTemplate;
 
-    @Autowired
-    private MsgLogMapper msgLogMapper;
+    private final MsgLogMapper msgLogMapper;
 
     /**
      * @Description 发送邮件业务

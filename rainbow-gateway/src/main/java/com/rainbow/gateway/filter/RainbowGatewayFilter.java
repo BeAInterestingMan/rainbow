@@ -5,6 +5,7 @@ import com.rainbow.common.core.constant.RainbowConstant;
 import com.rainbow.common.core.entity.RainbowResponse;
 import com.rainbow.gateway.properties.RainbowGatewayProperties;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +31,10 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class RainbowGatewayFilter implements GlobalFilter {
 
-    @Autowired
-    private RainbowGatewayProperties gatewayProperties;
+    private final RainbowGatewayProperties gatewayProperties;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {

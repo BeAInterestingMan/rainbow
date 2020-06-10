@@ -6,6 +6,7 @@ import com.rainbow.bus.api.entity.RainbowMail;
 import com.rainbow.bus.service.exception.BusException;
 import com.rainbow.bus.service.proxy.BaseConsumer;
 import com.rainbow.bus.service.utils.MessageHelper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -19,10 +20,10 @@ import java.io.IOException;
  *  @Date 2020/5/23 14:59
  */
 @Component
+@RequiredArgsConstructor
 public class EmailConsumer implements BaseConsumer {
 
-    @Autowired
-    private JavaMailSender javaMailSender;
+    private final JavaMailSender javaMailSender;
 
     @Override
     public void consume(Message message, Channel channel) throws IOException {

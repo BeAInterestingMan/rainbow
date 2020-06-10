@@ -4,6 +4,7 @@ import com.rainbow.bus.api.entity.MsgLog;
 import com.rainbow.bus.service.exception.BusException;
 import com.rainbow.bus.service.mapper.MsgLogMapper;
 import com.rainbow.bus.service.service.MsgLogService;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +17,10 @@ import java.util.List;
  *  @Date 2020/5/22 17:41
  */
 @Service
+@RequiredArgsConstructor
 public class MsgLogServiceImpl implements MsgLogService {
 
-    @Autowired
-    private MsgLogMapper msgLogMapper;
+    private final MsgLogMapper msgLogMapper;
 
     @Override
     public void updateStatus(String msgId, Integer delivering) {

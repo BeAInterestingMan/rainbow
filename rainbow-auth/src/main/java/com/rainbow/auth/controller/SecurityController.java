@@ -1,6 +1,7 @@
 package com.rainbow.auth.controller;
 
 import com.rainbow.auth.service.CaptchaService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,10 +17,10 @@ import java.security.Principal;
  *  @Date 2020/5/13 13:23
  */
 @RestController
+@RequiredArgsConstructor
 public class SecurityController {
 
-    @Autowired
-    private CaptchaService captchaService;
+    private final CaptchaService captchaService;
 
     /**
      * @Description 生成验证码

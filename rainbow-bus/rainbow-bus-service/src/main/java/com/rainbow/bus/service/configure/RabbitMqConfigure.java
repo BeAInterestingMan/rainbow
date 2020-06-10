@@ -3,6 +3,7 @@ package com.rainbow.bus.service.configure;
 import com.rainbow.bus.service.constant.MsgConstant;
 import com.rainbow.bus.service.constant.RainbowRabbitConstant;
 import com.rainbow.bus.service.service.MsgLogService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -25,13 +26,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Configuration
 @Slf4j
 @Transactional(rollbackFor = Exception.class)
+@RequiredArgsConstructor
 public class RabbitMqConfigure {
 
-    @Autowired
-    private CachingConnectionFactory connectionFactory;
+    private final CachingConnectionFactory connectionFactory;
 
-    @Autowired
-    private MsgLogService logService;
+    private final MsgLogService logService;
 
     @Bean
     public Jackson2JsonMessageConverter converter() {

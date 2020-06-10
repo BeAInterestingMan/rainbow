@@ -8,6 +8,7 @@ import com.rainbow.common.redis.service.RedisService;
 import com.wf.captcha.GifCaptcha;
 import com.wf.captcha.SpecCaptcha;
 import com.wf.captcha.base.Captcha;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -24,13 +25,12 @@ import java.io.IOException;
  *  @Date 2020/5/13 13:33
  */
 @Service
+@RequiredArgsConstructor
 public class CaptchaServiceImpl implements CaptchaService {
-    
-    @Autowired
-    private RedisService redisService;
 
-    @Autowired
-    private CaptchaProperties captchaProperties;
+    private final RedisService redisService;
+
+    private final CaptchaProperties captchaProperties;
 
 
     public void create(HttpServletRequest request, HttpServletResponse response) throws IOException {

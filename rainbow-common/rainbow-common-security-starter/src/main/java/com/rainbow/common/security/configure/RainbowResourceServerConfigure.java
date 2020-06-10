@@ -5,6 +5,7 @@ import com.rainbow.common.core.constant.EndpointConstant;
 import com.rainbow.common.security.handler.RainbowAccessDeniedHandler;
 import com.rainbow.common.security.handler.RainbowAuthExceptionEntryPoint;
 import com.rainbow.common.security.properties.RainbowCloudSecurityProperties;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +21,14 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
  */
 @EnableResourceServer
 @Configuration
+@RequiredArgsConstructor
 public class RainbowResourceServerConfigure extends ResourceServerConfigurerAdapter {
 
-    @Autowired
-    private RainbowAccessDeniedHandler accessDeniedHandler;
+    private final RainbowAccessDeniedHandler accessDeniedHandler;
 
-    @Autowired
-    private RainbowAuthExceptionEntryPoint authExceptionEntryPoint;
+    private final RainbowAuthExceptionEntryPoint authExceptionEntryPoint;
 
-    @Autowired
-    private RainbowCloudSecurityProperties securityProperties;
+    private final RainbowCloudSecurityProperties securityProperties;
 
     /**
      * @Description 配置处理403 401

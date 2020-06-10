@@ -5,6 +5,7 @@ import com.rainbow.auth.service.impl.RedisClientDetailsService;
 import com.rainbow.auth.translator.RainbowWebExceptionTranslator;
 import com.rainbow.common.security.handler.RainbowAccessDeniedHandler;
 import com.rainbow.common.security.handler.RainbowAuthExceptionEntryPoint;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,21 +31,17 @@ import java.util.UUID;
 @EnableAuthorizationServer
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@RequiredArgsConstructor
 public class  AuthorizationServerConfigurer extends AuthorizationServerConfigurerAdapter {
 
-    @Autowired
-    private RedisClientDetailsService redisClientDetailsService;
-    @Autowired
-    private RedisConnectionFactory redisConnectionFactory;
+    private final RedisClientDetailsService redisClientDetailsService;
+    private final RedisConnectionFactory redisConnectionFactory;
 
-    @Autowired
-    private RainbowUserDetailService userDetailService;
+    private final RainbowUserDetailService userDetailService;
 
-    @Autowired
-    private  AuthenticationManager authenticationManager;
+    private final  AuthenticationManager authenticationManager;
 
-    @Autowired
-    private RainbowWebExceptionTranslator translator;
+    private final RainbowWebExceptionTranslator translator;
 
     /**
      * @Description 客户端信息配置

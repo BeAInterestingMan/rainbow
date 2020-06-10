@@ -8,6 +8,7 @@ import com.rainbow.auth.service.UserService;
 import com.rainbow.common.core.entity.system.Menu;
 import com.rainbow.common.core.entity.system.SystemUser;
 import com.rainbow.common.core.entity.system.UserDataPermission;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,13 +23,12 @@ import java.util.stream.Collectors;
  */
 @Service
 @Transactional(rollbackFor = Exception.class)
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    
-    @Autowired
-    private UserMapper userMapper;
 
-    @Autowired
-    private MenuMapper menuMapper;
+    private final UserMapper userMapper;
+
+    private final MenuMapper menuMapper;
     
     @Override
     public SystemUser selectUserByUsername(String username) {

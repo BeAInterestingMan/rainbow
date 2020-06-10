@@ -2,6 +2,7 @@ package com.rainbow.auth.configure;
 
 import com.rainbow.auth.filter.ValidateCaptchaFilter;
 import com.rainbow.auth.service.impl.RainbowUserDetailService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
@@ -20,15 +21,16 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  */
 @Order(2)
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class RainbowSecurityConfigure extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private RainbowUserDetailService userDetailService;
 
-    @Autowired
-    private  PasswordEncoder passwordEncoder;
+    private final RainbowUserDetailService userDetailService;
 
-    @Autowired
-    private ValidateCaptchaFilter validateCaptchaFilter;
+
+    private final  PasswordEncoder passwordEncoder;
+
+
+    private final ValidateCaptchaFilter validateCaptchaFilter;
 
     /**
      * @Description oauth2.0密码模式认证器

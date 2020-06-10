@@ -5,6 +5,7 @@ import com.rainbow.bus.api.entity.MsgLog;
 import com.rainbow.bus.service.constant.MsgConstant;
 import com.rainbow.bus.service.constant.RainbowRabbitConstant;
 import com.rainbow.bus.service.service.MsgLogService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -22,13 +23,13 @@ import java.util.List;
 
 @Slf4j
 //@EnableScheduling
+@RequiredArgsConstructor
 public class RainbowMsgTask {
 
-    @Autowired
-    private MsgLogService msgLogService;
 
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
+    private final MsgLogService msgLogService;
+
+    private final RabbitTemplate rabbitTemplate;
 
     /**
      * @Description 每隔30秒消息重新投递

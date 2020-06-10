@@ -6,6 +6,7 @@ import com.rainbow.common.core.entity.system.Menu;
 import com.rainbow.server.system.service.exception.SystemException;
 import com.rainbow.server.system.service.mapper.MenuMapper;
 import com.rainbow.server.system.service.service.MenuService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -22,10 +23,10 @@ import java.util.stream.Collectors;
  *  @Date 2020/5/15 10:23
  */
 @Service
+@RequiredArgsConstructor
 public class MenuServiceImpl implements MenuService {
 
-    @Autowired
-    private MenuMapper menuMapper;
+    private final MenuMapper menuMapper;
 
     @Override
     public List<Menu> getMenuTree() {

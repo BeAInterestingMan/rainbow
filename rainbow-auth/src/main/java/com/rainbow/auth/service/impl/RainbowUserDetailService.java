@@ -3,6 +3,7 @@ package com.rainbow.auth.service.impl;
 import com.rainbow.auth.service.UserService;
 import com.rainbow.common.core.entity.RainbowAuthUser;
 import com.rainbow.common.core.entity.system.SystemUser;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,10 @@ import java.util.List;
  */
 @Service
 @Transactional(rollbackFor = Exception.class)
+@RequiredArgsConstructor
 public class RainbowUserDetailService implements UserDetailsService {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();

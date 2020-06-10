@@ -1,5 +1,6 @@
 package com.rainbow.common.redis.service;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -11,10 +12,10 @@ import java.util.concurrent.TimeUnit;
  *  @author liuhu
  *  @Date 2020/5/11 17:46
  */
+@RequiredArgsConstructor
 public class RedisService {
 
-    @Autowired
-    private RedisTemplate<String,Object> redisTemplate;
+    private final RedisTemplate<String,Object> redisTemplate;
 
     /**
      * 普通缓存获取
