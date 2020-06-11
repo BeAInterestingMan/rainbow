@@ -25,6 +25,22 @@ Actuator| 服务监控
 SkyWalking | 分布式追踪系统
 docker| 服务部署
 
+
+### 服务模块
+
+
+服务名称 | 端口 | 描述
+---|---|---
+rainbow-auth| 8881| 微服务认证授权
+rainbow-gateway| 8882 |微服务网关
+rainbow-server-system| 8883 | 系统资源微服务
+nacos| 8848 | 注册中心
+rainbow-bus| 8885 |消息微服务
+rainbow-search| 8886 |全文检索微服务
+rainbow-apm| 8887 |监控微服务
+rainbow-upload| 8888 |文件上传微服务
+rainbow-generator| 8889 |逆向工程-代码生成器
+
 ### 搭建流程
 1.搭建auth服务
 
@@ -129,21 +145,6 @@ docker| 服务部署
 15.分布式事务处理(待完成)
 
 16.链路追踪(待完成)
-
-### 服务模块
-
-
-服务名称 | 端口 | 描述
----|---|---
-rainbow-auth| 8881| 微服务认证授权
-rainbow-gateway| 8882 |微服务网关
-rainbow-server-system| 8883 | 系统资源微服务
-nacos| 8848 | 注册中心
-rainbow-bus| 8885 |消息微服务
-rainbow-search| 8886 |全文检索微服务
-rainbow-apm| 8887 |监控微服务
-rainbow-upload| 8888 |文件上传微服务
-rainbow-generator| 8889 |逆向工程-代码生成器
 
 ### 目录结构
 ```
