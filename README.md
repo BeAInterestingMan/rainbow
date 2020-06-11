@@ -41,6 +41,25 @@ rainbow-apm| 8887 |监控微服务
 rainbow-upload| 8888 |文件上传微服务
 rainbow-generator| 8889 |逆向工程-代码生成器
 
+
+### 目录结构
+```
+├─rainbow-auth                                                  ------ 微服务认证服务器
+├─rainbow-common                                                ------ 通用模块
+│      ├─rainbow-common-datasource-starter                      ------ 数据权限处理和分页插件starter
+│      ├─rainbow-common-redis-starter                           ------ redis缓存starter
+│      ├─rainbow-common-security-starter                        ------ oauth2.0的一些配置
+│      ├─rainbow-common-core                                    ------ 通用工具及系统通用处理
+├─rainbow-gateway                                               -----  微服务网关
+└─rainbow-server                                                ------ 资源服务器
+│   ├─rainbow-system-api                                        ------ 资源服务器api
+│   └─rainbow-system-server                                     ------ 资源服务器业务
+├─rainbow-bus                                                   ------ 消息微服务  
+├─rainbow-upload                                                ------ 文件上传服务  
+├─rainbow-apm                                                   ------ 监控服务  
+├─rainbow-search                                                ------ 全文检索服务  
+```
+
 ### 搭建流程
 1.搭建auth服务
 
@@ -145,24 +164,6 @@ rainbow-generator| 8889 |逆向工程-代码生成器
 15.分布式事务处理(待完成)
 
 16.链路追踪(待完成)
-
-### 目录结构
-```
-├─rainbow-auth                                                  ------ 微服务认证服务器
-├─rainbow-common                                                ------ 通用模块
-│      ├─rainbow-common-datasource-starter                      ------ 数据权限处理和分页插件starter
-│      ├─rainbow-common-redis-starter                           ------ redis缓存starter
-│      ├─rainbow-common-security-starter                        ------ oauth2.0的一些配置
-│      ├─rainbow-common-core                                    ------ 通用工具及系统通用处理
-├─rainbow-gateway                                               -----  微服务网关
-└─rainbow-server                                                ------ 资源服务器
-│   ├─rainbow-system-api                                        ------ 资源服务器api
-│   └─rainbow-system-server                                     ------ 资源服务器业务
-├─rainbow-bus                                                   ------ 消息微服务  
-├─rainbow-upload                                                ------ 文件上传服务  
-├─rainbow-apm                                                   ------ 监控服务  
-├─rainbow-search                                                ------ 全文检索服务  
-```
 
 
 
