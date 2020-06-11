@@ -1,4 +1,5 @@
-package com.rainbow.server.system.service.feign;
+package com.rainbow.server.system.api.feign;
+
 
 import com.rainbow.server.system.api.dto.RainbowMail;
 import io.swagger.annotations.ApiOperation;

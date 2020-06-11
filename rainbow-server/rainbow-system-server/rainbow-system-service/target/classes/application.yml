@@ -43,7 +43,7 @@ spring:
     timeout: 5000
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.rainbow.common.core.entity
+  type-aliases-package: com.rainbow.common.core.entity,com.rainbow.server.system.api.entity
   configuration:
     map-underscore-to-camel-case: true
   global-config:

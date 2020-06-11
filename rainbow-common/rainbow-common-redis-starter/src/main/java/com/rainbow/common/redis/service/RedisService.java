@@ -12,10 +12,10 @@ import java.util.concurrent.TimeUnit;
  *  @author liuhu
  *  @Date 2020/5/11 17:46
  */
-@RequiredArgsConstructor
-public class RedisService {
 
-    private final RedisTemplate<String,Object> redisTemplate;
+public class RedisService {
+    @Autowired
+    private  RedisTemplate<String,Object> redisTemplate;
 
     /**
      * 普通缓存获取

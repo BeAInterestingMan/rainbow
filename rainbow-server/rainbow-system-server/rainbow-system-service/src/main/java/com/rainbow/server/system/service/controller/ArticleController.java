@@ -32,7 +32,7 @@ public class ArticleController {
      * @param article
      * @return org.springframework.http.ResponseEntity
      */
-    @GetMapping
+    @PostMapping
     @ApiOperation("新增文章")
     public ResponseEntity add(@RequestBody Article article){
        return ResponseEntity.ok(articleService.addArticle(article));

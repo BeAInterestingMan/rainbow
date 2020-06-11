@@ -10,6 +10,8 @@ import com.rainbow.common.core.entity.system.SystemUser;
 import com.rainbow.common.core.entity.system.UserDataPermission;
 import com.rainbow.common.core.entity.system.UserRole;
 import com.rainbow.common.core.utils.RainbowUtil;
+import com.rainbow.server.system.api.dto.RainbowMail;
+import com.rainbow.server.system.api.feign.RainbowMailFeign;
 import com.rainbow.server.system.service.exception.SystemException;
 import com.rainbow.server.system.service.mapper.MenuMapper;
 import com.rainbow.server.system.service.mapper.UserDataPermissionMapper;
@@ -23,6 +25,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,6 +52,8 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     private final UserDataPermissionMapper userDataPermissionMapper;
+
+    private final RainbowMailFeign rainbowMailFeign;
 
     @Override
     public SystemUser selectUserByUsername(String username) {
@@ -163,6 +168,26 @@ public class UserServiceImpl implements UserService {
         return systemUser;
     }
 
+    @Override
+    public void success() {
+        sendEmail();
+        // TODO 记录登录日志
+    }
+    /**
+     * @Description 发送登录邮件
+     * @author liuhu
+     * @createTime 2020-06-11 09:17:33
+     * @param
+     * @return void
+     */
+    public void sendEmail(){
+        RainbowMail rainbowMail = new RainbowMail();
+        rainbowMail.setFromMailAddress("1649471814@qq.com");
+        rainbowMail.setToMailAddress("1649471814@qq.com");
+        rainbowMail.setSubject(RainbowConstant.LOGIN_MSG);
+        rainbowMail.setText("尊贵的用户"+RainbowUtil.getCurrentUsername()+"您好，您于"+ LocalDateTime.now() +"登录成功");
+        rainbowMailFeign.send(rainbowMail);
+    }
     /**
      * @Description 用户部门中间表
      * @author liuhu

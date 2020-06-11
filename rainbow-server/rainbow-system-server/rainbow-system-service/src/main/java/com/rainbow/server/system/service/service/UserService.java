@@ -73,4 +73,6 @@ public interface UserService {
      * @return com.rainbow.common.core.entity.system.SystemUser
      */
     SystemUser getUser(long id);
+
+    void success();
 }

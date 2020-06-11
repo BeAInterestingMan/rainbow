@@ -5,9 +5,11 @@ import com.rainbow.common.core.constant.RainbowConstant;
 import com.rainbow.common.core.entity.QueryRequest;
 import com.rainbow.common.core.entity.system.SystemUser;
 import com.rainbow.common.core.utils.RainbowUtil;
+
 import com.rainbow.server.system.api.dto.RainbowMail;
+import com.rainbow.server.system.api.feign.RainbowMailFeign;
 import com.rainbow.server.system.service.annotation.RainbowLog;
-import com.rainbow.server.system.service.feign.RainbowMailFeign;
+
 import com.rainbow.server.system.service.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -31,8 +33,6 @@ import java.time.LocalDateTime;
 @Api(tags = "系统用户接口")
 public class UserController {
 
-    private final RainbowMailFeign rainbowMailFeign;
-
     private final UserService userService;
     /**
      * @Description 登录成功回调
@@ -44,18 +44,10 @@ public class UserController {
     @GetMapping("success")
     @RainbowLog(description = "登录")
     @ApiOperation("登录成功回调")
-    public String success(){
-        sendEmail();
-        return "ok";
+    public ResponseEntity success(){
+        userService.success();
      // todo 记录登录日志  发送邮件
-    }
-    public void sendEmail(){
-        RainbowMail rainbowMail = new RainbowMail();
-        rainbowMail.setFromMailAddress("1649471814@qq.com");
-        rainbowMail.setToMailAddress("1649471814@qq.com");
-        rainbowMail.setSubject(RainbowConstant.LOGIN_MSG);
-        rainbowMail.setText("尊贵的用户"+RainbowUtil.getCurrentUsername()+"您好，您于"+ LocalDateTime.now() +"登录成功");
-        rainbowMailFeign.send(rainbowMail);
+      return ResponseEntity.ok().build();
     }
 
     /**
