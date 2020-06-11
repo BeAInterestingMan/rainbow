@@ -86,6 +86,19 @@ rainbow是一款使用Spring Cloud Hoxton.RELEASE、Spring Cloud OAuth2 & Spring
 
 
 10.搭建rainbow-search全文检索服务(待完成)
+  
+    1.搭建elasticsearch服务和kibana可视化界面。
+    
+    2.创建es的索引和mapping  
+    （1) es中有index,type,document,mapping的概念。index类比于mysql的数据库,type类比于表，document类比于一条记录，mapping类比于字段的约束条件，varchar之类的
+    （2) es中的倒排索引。lasticSearch引擎把文档数据写入到倒排索引（Inverted Index）的数据结构中，倒排索引建立的是分词（Term）和文档（Document）之间的映射关系，在倒排索引中，数据是面向词（Term）而不是面向文档的。
+    （3) 下载对应版本的分词器，我这里使用ik分词器
+       
+    3.搭建cannal同步mysql的数据到es中。
+     （1）当用户进行业务操作（增删改）时,canal监听mysql的binlog日志，伪装成从节点得到这些信息，然后把mysql数据同步到es，做到一致性。
+       
+     
+  
 
 11.搭建rainbow-upload文件上传服务(已完成 利用fastDfs)
 
