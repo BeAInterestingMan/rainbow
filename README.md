@@ -5,7 +5,7 @@
 ![https://img.shields.io/badge/springboot-2.2.0.RELEASE-brightgreen.svg?style=flat-square](https://img.shields.io/badge/springboot-2.2.0.RELEASE-brightgreen.svg?style=flat-square)
 
 
-rainbow是一款使用Spring Cloud Hoxton.RELEASE、Spring Cloud OAuth2 & Spring Cloud Alibaba构建的权限管理系统：
+rainbow是一款使用Spring Cloud Alibaba+OAuth2.0构建的权限管理系统,将公司中常用的技术整合起来，致力于快速开发：
 
 ### 主要使用技术                                                                       
 名称  | 描述                                      
