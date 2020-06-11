@@ -7,10 +7,10 @@
 
 rainbow是一款使用Spring Cloud Hoxton.RELEASE、Spring Cloud OAuth2 & Spring Cloud Alibaba构建的权限管理系统：
 
-### 主要使用技术
-名称  | 描述
----|---
-springboot2.2| 基本骨架
+### 主要使用技术                                                                       
+名称  | 描述                                        服务名称 | 端口 | 描述
+---|---                                              ---|---|---
+springboot2.2| 基本骨架                             rainbow-auth| 8881| 微服务认证授权              
 springcloud Hoxton| 基本骨架
 nacos| 网关
 oauth2.0 | 权限处理
