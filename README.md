@@ -7,7 +7,25 @@
 
 rainbow是一款使用Spring Cloud Hoxton.RELEASE、Spring Cloud OAuth2 & Spring Cloud Alibaba构建的权限管理系统：
 
-# 搭建流程
+### 主要使用技术
+名称  | 描述
+---|---
+springboot2.2| 基本骨架
+springcloud Hoxton| 基本骨架
+nacos| 网关
+oauth2.0 | 权限处理
+redis| 缓存
+mybatis-plus | 持久层
+swagger-2.9.2| 接口文档
+seata | 分布式事务
+rabbitMq| 消息队列
+elasticsearch 6.8.8| 全文检索
+canal 1.1.5| 数据同步
+Actuator| 服务监控
+SkyWalking | 分布式追踪系统
+docker| 服务部署
+
+### 搭建流程
 1.搭建auth服务
 
     1. 认证服务器
