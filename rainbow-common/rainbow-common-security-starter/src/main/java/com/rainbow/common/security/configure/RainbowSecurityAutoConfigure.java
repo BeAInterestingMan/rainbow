@@ -73,6 +73,9 @@ public class RainbowSecurityAutoConfigure {
     @Bean
     public RequestInterceptor oauth2FeignRequestInterceptor() {
         return requestTemplate -> {
+            // 添加 gateway Token
+            String gatewayToken = new String(Base64Utils.encode(RainbowConstant.GATEWAY_TOKEN_VALUE.getBytes()));
+            requestTemplate.header(RainbowConstant.GATEWAY_TOKEN_HEADER, gatewayToken);
             // 得到当前的access_token 放入请求头
             String authorizationToken = RainbowUtil.getCurrentTokenValue();
             requestTemplate.header(HttpHeaders.AUTHORIZATION, RainbowConstant.OAUTH2_TOKEN_TYPE + authorizationToken);

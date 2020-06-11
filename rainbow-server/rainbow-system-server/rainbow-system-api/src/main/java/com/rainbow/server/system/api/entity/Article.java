@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.rainbow.common.core.entity.QueryRequest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -102,4 +103,10 @@ public class Article {
         @ApiModelProperty(name = "audit_id",value = "审核人ID")
         @TableField("audit_id")
          private Integer auditId;
+
+        @TableField(exist = false)
+        private QueryRequest queryRequest;
+
+        @TableField(exist = false)
+        private String keyword;
 }

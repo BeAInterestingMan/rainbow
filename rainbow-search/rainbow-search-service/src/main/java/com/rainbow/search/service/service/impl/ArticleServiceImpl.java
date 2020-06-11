@@ -53,9 +53,13 @@ public class ArticleServiceImpl  implements ArticleEsService {
            if(null != articleRequest.getIsAudit()){
                queryBuilder.must(QueryBuilders.matchPhraseQuery("isAudit",articleRequest.getIsAudit()));
            }
-           queryBuilder.must(QueryBuilders.matchPhraseQuery("isDelete",articleRequest.getIsDelete()));
+           if(null != articleRequest.getIsDelete()){
+               queryBuilder.must(QueryBuilders.matchPhraseQuery("isDelete",articleRequest.getIsDelete()));
+           }
            // queryStringQuery 使用分词搜素
-           queryBuilder.must(QueryBuilders.queryStringQuery(articleRequest.getKeyWord()));
+           if(StringUtils.isNotBlank(articleRequest.getKeyword())){
+               queryBuilder.must(QueryBuilders.queryStringQuery(articleRequest.getKeyword()));
+           }
            if(null != articleRequest.getStartTime() && null != articleRequest.getEndTime()){
                // rangeQuery 范围查询
                queryBuilder.must(QueryBuilders.rangeQuery("createTime").gt(articleRequest.getStartTime()).lt(articleRequest.getEndTime()));
@@ -63,7 +67,7 @@ public class ArticleServiceImpl  implements ArticleEsService {
            // 排序查询
            FieldSortBuilder fsb = SortBuilders.fieldSort("createTime").order(SortOrder.ASC);
            // 分页条件
-           PageRequest pageRequest = PageRequest.of(articleRequest.getCurrent(), articleRequest.getSize());
+           PageRequest pageRequest = PageRequest.of(articleRequest.getCurrent()-1, articleRequest.getSize());
            NativeSearchQuery build = searchQueryBuilder.withQuery(queryBuilder)
                    .withSort(fsb)
                    .withPageable(pageRequest).build();

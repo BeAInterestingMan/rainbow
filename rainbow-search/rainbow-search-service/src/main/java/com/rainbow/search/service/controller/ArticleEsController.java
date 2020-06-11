@@ -1,6 +1,7 @@
 package com.rainbow.search.service.controller;
 
 
+import com.rainbow.common.core.entity.TableData;
 import com.rainbow.search.api.dto.ArticleRequest;
 import com.rainbow.search.service.service.ArticleEsService;
 import io.swagger.annotations.Api;
@@ -22,10 +23,9 @@ public class ArticleEsController {
 
     private final ArticleEsService articleEsService;
 
-    @GetMapping("page")
+    @PostMapping("pageList")
     @ApiOperation("文章操作")
-    public ResponseEntity page(@RequestBody ArticleRequest articleRequest){
-       return ResponseEntity.ok(articleEsService.page(articleRequest));
+    public TableData page(@RequestBody ArticleRequest articleRequest){
+       return articleEsService.page(articleRequest);
     }
-
 }

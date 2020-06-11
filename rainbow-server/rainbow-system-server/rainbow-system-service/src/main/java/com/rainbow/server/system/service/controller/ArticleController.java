@@ -5,6 +5,7 @@ package com.rainbow.server.system.service.controller;
 import com.rainbow.common.core.entity.QueryRequest;
 import com.rainbow.common.core.utils.RainbowUtil;
 import com.rainbow.server.system.api.entity.Article;
+import com.rainbow.server.system.api.feign.ArticleFeign;
 import com.rainbow.server.system.service.service.ArticleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,6 +25,8 @@ import org.springframework.web.bind.annotation.*;
 public class ArticleController {
 
     private final ArticleService articleService;
+
+    private final ArticleFeign articleFeign;
 
     /**
      * @Description 新增文章
@@ -51,9 +54,16 @@ public class ArticleController {
         return ResponseEntity.ok(articleService.getById(id));
     }
 
-    @GetMapping("page")
-    @ApiOperation("新增文章")
-    public ResponseEntity page(QueryRequest queryRequest,Article article){
-        return ResponseEntity.ok(articleService.page(queryRequest,article));
+    /**
+     * @Description 查询文章分页
+     * @author liuhu
+     * @createTime 2020-06-11 15:46:15
+     * @param article
+     * @return org.springframework.http.ResponseEntity
+     */
+    @PostMapping("page")
+    @ApiOperation("查询文章分页")
+    public ResponseEntity page(@RequestBody  Article article){
+        return ResponseEntity.ok(articleService.page(article));
     }
 }

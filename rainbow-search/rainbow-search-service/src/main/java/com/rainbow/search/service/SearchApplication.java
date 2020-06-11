@@ -1,5 +1,6 @@
 package com.rainbow.search.service;
 
+import com.rainbow.common.security.annotation.EnableRainbowResourceServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -12,7 +13,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
  */
 @SpringBootApplication
 @EnableFeignClients
-@EnableResourceServer
+@EnableRainbowResourceServer
 public class SearchApplication {
     public static void main(String[] args) {
         SpringApplication.run(SearchApplication.class,args);

@@ -32,5 +32,5 @@ public interface ArticleService {
      */
     Article getById(Integer id);
 
-    TableData page(QueryRequest queryRequest, Article article);
+    TableData page( Article article);
 }

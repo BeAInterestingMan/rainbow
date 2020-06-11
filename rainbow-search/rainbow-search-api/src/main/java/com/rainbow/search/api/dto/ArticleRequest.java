@@ -37,7 +37,7 @@ public class ArticleRequest {
     private String isDelete;
 
     /** 关键词全文检索*/
-    private String keyWord;
+    private String keyword;
 
     /** 是否审核*/
     private Integer isAudit;

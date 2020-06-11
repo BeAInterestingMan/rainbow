@@ -4,11 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.rainbow.common.core.constant.RainbowConstant;
 import com.rainbow.common.core.entity.RainbowResponse;
 import com.rainbow.gateway.properties.RainbowGatewayProperties;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.ArrayUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.gateway.route.Route;
@@ -16,6 +14,7 @@ import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
@@ -23,12 +22,12 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
-import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.GATEWAY_ORIGINAL_REQUEST_URL_ATTR;
-import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.GATEWAY_REQUEST_URL_ATTR;
-import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.GATEWAY_ROUTE_ATTR;
+
 import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
+
+import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.*;
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -38,7 +37,7 @@ public class RainbowGatewayFilter implements GlobalFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        ServerHttpRequest  request =exchange.getRequest();
+        ServerHttpRequest request = exchange.getRequest();
         ServerHttpResponse response = exchange.getResponse();
         // 禁止客户端的访问资源逻辑
         Mono<Void> checkForbidUriResult = checkForbidUrl(request, response);

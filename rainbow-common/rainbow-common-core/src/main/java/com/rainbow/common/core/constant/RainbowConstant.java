@@ -7,8 +7,8 @@ public interface RainbowConstant {
     String OAUTH2_TOKEN_TYPE = "bearer";
 
     /**gateway 防护token key*/
-    String GATEWAY_TOKEN_VALUE = "gateway_token";
-    String GATEWAY_TOKEN_HEADER = "rainbow123456";
+    String GATEWAY_TOKEN_VALUE = "rainbow123456";
+    String GATEWAY_TOKEN_HEADER = "gatewayToken";
 
     String DEFAULT_PASSWORD = "rainbow";
 

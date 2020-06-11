@@ -53,14 +53,16 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public TableData page(QueryRequest queryRequest, Article article) {
+    public TableData page(Article article) {
         TableData tableData = null;
         try {
             ArticleRequest articleRequest = new ArticleRequest();
             BeanUtils.copyProperties(article,articleRequest);
-            articleRequest.setCurrent(queryRequest.getPageNum());
-            articleRequest.setSize(queryRequest.getPageSize());
-             tableData = (TableData)articleFeign.page(articleRequest).getBody();
+            if(null != article.getQueryRequest()){
+                articleRequest.setCurrent(article.getQueryRequest().getPageNum());
+                articleRequest.setSize(article.getQueryRequest().getPageSize());
+            }
+            tableData = articleFeign.page(articleRequest);
         }catch (Exception e){
                  e.printStackTrace();
                  throw new SystemException("查询分页失败");
