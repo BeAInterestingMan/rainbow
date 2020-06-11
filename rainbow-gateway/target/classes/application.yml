@@ -57,5 +57,14 @@ spring:
               args:
                 name: rainbow-search
                 fallbackUri: forward:/fallback/rainbow-search
+        - id: rainbow-generator
+          uri: lb://rainbow-generator
+          predicates:
+            - Path=/search/**
+          filters:
+            - name: Hystrix
+              args:
+                name: rainbow-generator
+                fallbackUri: forward:/fallback/rainbow-generator
       default-filters:
         - StripPrefix=1
