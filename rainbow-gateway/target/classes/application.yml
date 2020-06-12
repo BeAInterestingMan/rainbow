@@ -68,3 +68,31 @@ spring:
                 fallbackUri: forward:/fallback/rainbow-generator
       default-filters:
         - StripPrefix=1
+
+
+  #admin 客户端配置
+  boot:
+    admin:
+      client:
+        url: http://localhost:8887
+        username: rainbow
+        password: 123456
+        instance:
+          prefer-ip: true
+#配置了SBA客户端的名称，描述和版本信息；
+info:
+  app:
+    name: ${spring.application.name}
+    description: "网关微服务"
+    version: "1.0-SNAPSHOT"
+
+# * 表示将SBA客户端的所有监控端点都暴露给SBA服务端；
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    #表示总是展示详细的健康信息。
+  endpoint:
+    health:
+      show-details: ALWAYS

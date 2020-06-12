@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.rainbow.common.core.entity.system.OauthClientDetails;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -22,5 +23,5 @@ public interface OauthClientDetailsMapper extends BaseMapper<OauthClientDetails>
      * @param oauthClientDetails
      * @return com.baomidou.mybatisplus.core.metadata.IPage<com.rainbow.common.core.entity.system.OauthClientDetails>
      */
-    IPage<OauthClientDetails> selectOauthClientDetailsPage(Page<OauthClientDetails> page, OauthClientDetails oauthClientDetails);
+    IPage<OauthClientDetails> selectOauthClientDetailsPage(@Param("page")Page<OauthClientDetails> page, @Param("oauthClientDetails")OauthClientDetails oauthClientDetails);
 }

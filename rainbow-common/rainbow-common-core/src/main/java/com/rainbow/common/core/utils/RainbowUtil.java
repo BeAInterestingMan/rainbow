@@ -179,7 +179,7 @@ public class RainbowUtil {
     public static TableData buildTableData(IPage<?> iPage){
         TableData tableData = new TableData();
         tableData.setRows(iPage.getRecords());
-        tableData.setTotal(tableData.getTotal());
+        tableData.setTotal(iPage.getTotal());
         return tableData;
     }
 

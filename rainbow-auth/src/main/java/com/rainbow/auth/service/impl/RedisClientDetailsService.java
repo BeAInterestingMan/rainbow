@@ -2,6 +2,7 @@ package com.rainbow.auth.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.rainbow.common.redis.service.RedisService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.exceptions.InvalidClientException;
 import org.springframework.security.oauth2.provider.ClientDetails;
@@ -66,5 +67,18 @@ public class RedisClientDetailsService extends JdbcClientDetailsService {
           redisService.hset(CACHE_CLIENT_KEY,clientId,JSONObject.toJSONString(clientDetails));
       }
       return clientDetails;
+    }
+
+    /**
+     * @Description 清除客户端缓存
+     * @author liuhu
+     * @createTime 2020-06-12 10:58:52
+     * @param clientId
+     * @return void
+     */
+    public void deleteClientCache(String clientId){
+        if(StringUtils.isNotBlank(clientId)){
+            redisService.hdet(CACHE_CLIENT_KEY,clientId);
+        }
     }
 }

@@ -94,4 +94,21 @@ public class RedisService {
             return false;
         }
     }
+
+    /**
+     * 向一张hash表中放入数据,如果不存在将创建
+     *
+     * @param key   键
+     * @param item  项
+     * @return true 成功 false失败
+     */
+    public Boolean hdet(String key, String item) {
+        try {
+            redisTemplate.opsForHash().delete(key, item);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

@@ -4,6 +4,7 @@ package com.rainbow.auth.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.rainbow.common.core.entity.QueryRequest;
 import com.rainbow.common.core.entity.system.OauthClientDetails;
+import org.apache.ibatis.annotations.Param;
 
 /**
  *  @Description 客户端信息
@@ -38,7 +39,7 @@ public interface OauthClientDetailsService{
      * @param oauthClientDetails
      * @return void
      */
-    void addOauthClientDetails(OauthClientDetails oauthClientDetails);
+    OauthClientDetails addOauthClientDetails(OauthClientDetails oauthClientDetails);
 
    /**
     * @Description 修改
@@ -57,4 +58,5 @@ public interface OauthClientDetailsService{
     * @return void
     */
     void deleteOauthClientDetails(String clientIds);
+
 }

@@ -30,6 +30,7 @@ spring:
           password: 123456
           driver-class-name: com.mysql.cj.jdbc.Driver
           url: jdbc:mysql://101.132.105.134:3306/rainbow?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
+      p6spy: true
 
   #redis
   redis:
@@ -95,6 +96,6 @@ rainbow:
   cloud:
     security:
       # 免认证url 多个逗号拼接
-      anonUris: /captcha,/swagger-ui.html,/webjars/**,/swagger-resources/**,/v2/api-docs/**,/email/**
-      # 是否禁止请求绕过网关
+      anonUris: /actuator/**,/captcha,/swagger-ui.html,/webjars/**,/swagger-resources/**,/v2/api-docs/**,/menu/download
+      # 是否开启禁止请求绕过网关
       enable: false

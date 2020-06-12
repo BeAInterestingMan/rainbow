@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainbow.auth.mapper.OauthClientDetailsMapper">
+    <!-- 基础返回结果集 -->
+    <resultMap id="OauthClientDetailsMap" type="com.rainbow.common.core.entity.system.OauthClientDetails">
+              <id property="clientId" column="client_id"/>
+             <result property="resourceIds" column="resource_ids"/>
+             <result property="clientSecret" column="client_secret"/>
+             <result property="scope" column="scope"/>
+             <result property="authorizedGrantTypes" column="authorized_grant_types"/>
+             <result property="webServerRedirectUri" column="web_server_redirect_uri"/>
+             <result property="authorities" column="authorities"/>
+             <result property="accessTokenValidity" column="access_token_validity"/>
+             <result property="refreshTokenValidity" column="refresh_token_validity"/>
+             <result property="additionalInformation" column="additional_information"/>
+             <result property="autoapprove" column="autoapprove"/>
+             <result property="originSecret" column="origin_secret"/>
+    </resultMap>
+
+
+    <!-- 基础列 -->
+    <sql id="baseColumn">
+ client_id, resource_ids, scope, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove
+    </sql>
+    <select id="selectOauthClientDetailsPage" resultMap="OauthClientDetailsMap" parameterType="com.rainbow.common.core.entity.system.OauthClientDetails">
+        select <include refid="baseColumn"/>
+        from oauth_client_details
+        <where>
+            <if test="oauthClientDetails.clientId != null and '' != oauthClientDetails.clientId">
+                client_id = #{oauthClientDetails.clientId}
+            </if>
+        </where>
+    </select>
+</mapper>

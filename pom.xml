@@ -17,6 +17,7 @@
         <module>rainbow-upload</module>
         <module>rainbow-generator</module>
         <module>rainbow-search</module>
+        <module>rainbow-apm</module>
     </modules>
     <description>rainbow微服务</description>
     <!--springboot版本号-->
@@ -37,6 +38,7 @@
         <p6spy.version>3.8.5</p6spy.version>
         <easy-captcha.version>1.6.2</easy-captcha.version>
         <ip2region.version>1.7</ip2region.version>
+        <spring-boot-admin.version>2.2.0</spring-boot-admin.version>
     </properties>
 
     <!--规定子工程依赖版本  不需要写版本号-->

@@ -3,6 +3,8 @@ package com.rainbow.common.core.entity.system;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,46 +25,49 @@ import java.io.Serializable;
 @Builder
 @Data
 @TableName("oauth_client_details")
+@ApiModel("客户端实体")
 public class OauthClientDetails implements Serializable {
 
     private static final long serialVersionUID = 421783821058285802L;
 
-    @TableId(value = "client_id")
-    @NotBlank(message = "{required}")
+
+    @ApiModelProperty(value="客户端ID",required = true)
+    @TableId
     private String clientId;
 
-    @TableField("resource_ids")
+    @ApiModelProperty(value = "资源id集合")
     private String resourceIds;
 
-    @TableField("client_secret")
-    @NotBlank(message = "{required}")
+
+    @ApiModelProperty(value = "客户端密码加密",required = true)
     private String clientSecret;
 
-    @TableField("scope")
-    @NotBlank(message = "{required}")
+
+    @ApiModelProperty(value = "权限范围",required = true)
     private String scope;
 
-    @TableField("authorized_grant_types")
-    @NotBlank(message = "{required}")
+
+    @ApiModelProperty(value = "认证模式",required = true)
     private String authorizedGrantTypes;
 
-    @TableField("web_server_redirect_uri")
+    @ApiModelProperty("重定向url")
     private String webServerRedirectUri;
 
-    @TableField("authorities")
+    @ApiModelProperty("指定用户的权限范围")
     private String authorities;
 
-    @TableField("access_token_validity")
-    @NotNull(message = "{required}")
+
+    @ApiModelProperty(value = "设置access_token的有效时间",required = true)
     private Integer accessTokenValidity;
 
-    @TableField("refresh_token_validity")
+    @ApiModelProperty(value = "设置refresh_token有效期",required = true)
     private Integer refreshTokenValidity;
 
-    @TableField("autoapprove")
+    private Integer additionalInformation;
+
     private Byte autoapprove;
 
-    @TableField("origin_secret")
+    @ApiModelProperty(value = "客户端原始密码",required = true)
     private String originSecret;
 
 }

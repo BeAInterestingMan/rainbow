@@ -1,0 +1,22 @@
+server:
+  port: 8887
+
+
+spring:
+  application:
+    name: rainbow-admin
+  boot:
+    admin:
+      ui:
+        title: ${spring.application.name}
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 101.132.105.134:8848
+        #admin 用户名密码
+  security:
+    user:
+      name: rainbow
+      password: 123456
+
+
