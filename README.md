@@ -5,9 +5,62 @@
 ![https://img.shields.io/badge/springboot-2.2.0.RELEASE-brightgreen.svg?style=flat-square](https://img.shields.io/badge/springboot-2.2.0.RELEASE-brightgreen.svg?style=flat-square)
 
 
-rainbow是一款使用Spring Cloud Hoxton.RELEASE、Spring Cloud OAuth2 & Spring Cloud Alibaba构建的权限管理系统：
+rainbow是一款使用Spring Cloud Alibaba+OAuth2.0构建的权限管理系统,将公司中常用的技术整合起来，致力于快速开发：
 
-# 搭建流程
+### 主要使用技术                                                                       
+名称  | 描述                                      
+---|---                                          
+springboot2.2| 基本骨架                                       
+springcloud Hoxton| 基本骨架
+nacos| 网关
+oauth2.0 | 权限处理
+redis| 缓存
+mybatis-plus | 持久层
+swagger-2.9.2| 接口文档
+seata | 分布式事务
+rabbitMq| 消息队列
+elasticsearch 6.8.8| 全文检索
+canal 1.1.5| 数据同步
+Actuator| 服务监控
+SkyWalking | 分布式追踪系统
+docker| 服务部署
+
+
+### 服务模块
+
+
+服务名称 | 端口 | 描述
+---|---|---
+rainbow-auth| 8881| 微服务认证授权
+rainbow-gateway| 8882 |微服务网关
+rainbow-server-system| 8883 | 系统资源微服务
+nacos| 8848 | 注册中心
+rainbow-bus| 8885 |消息微服务
+rainbow-search| 8886 |全文检索微服务
+rainbow-apm| 8887 |监控微服务
+rainbow-upload| 8888 |文件上传微服务
+rainbow-generator| 8889 |逆向工程-代码生成器
+
+
+### 目录结构
+```
+├─rainbow-auth                                                  ------ 微服务认证服务器
+├─rainbow-common                                                ------ 通用模块
+│      ├─rainbow-common-datasource-starter                      ------ 数据权限处理和分页插件starter
+│      ├─rainbow-common-redis-starter                           ------ redis缓存starter
+│      ├─rainbow-common-security-starter                        ------ oauth2.0的一些配置
+│      ├─rainbow-common-core                                    ------ 通用工具及系统通用处理
+├─rainbow-gateway                                               -----  微服务网关
+└─rainbow-server                                                ------ 资源服务器
+│   ├─rainbow-system-api                                        ------ 资源服务器api
+│   └─rainbow-system-server                                     ------ 资源服务器业务
+├─rainbow-bus                                                   ------ 消息微服务  
+├─rainbow-upload                                                ------ 文件上传服务  
+├─rainbow-apm                                                   ------ 监控服务  
+├─rainbow-search                                                ------ 全文检索服务  
+```
+
+### 搭建流程
 1.搭建auth服务
 
     1. 认证服务器
@@ -86,54 +139,31 @@ rainbow是一款使用Spring Cloud Hoxton.RELEASE、Spring Cloud OAuth2 & Spring
 
 
 10.搭建rainbow-search全文检索服务(待完成)
+  
+    1.搭建elasticsearch服务和kibana可视化界面。
+    
+    2.创建es的索引和mapping  
+    （1) es中有index,type,document,mapping的概念。index类比于mysql的数据库,type类比于表，document类比于一条记录，mapping类比于字段的约束条件，varchar之类的
+    （2) es中的倒排索引。lasticSearch引擎把文档数据写入到倒排索引（Inverted Index）的数据结构中，倒排索引建立的是分词（Term）和文档（Document）之间的映射关系，在倒排索引中，数据是面向词（Term）而不是面向文档的。
+    （3) 下载对应版本的分词器，我这里使用ik分词器
+       
+    3.搭建cannal同步mysql的数据到es中。
+     （1）当用户进行业务操作（增删改）时,canal监听mysql的binlog日志，伪装成从节点得到这些信息，然后把mysql数据同步到es，做到一致性。
+       
+     
+  
 
-11.搭建rainbow-cannal数据同步服务(待完成)
+11.搭建rainbow-upload文件上传服务(已完成 利用fastDfs)
 
-12.搭建rainbow-upload文件上传服务(已完成 利用fastDfs)
+12.搭建rainbow-apm监控服务(待完成)
 
-14.搭建rainbow-apm监控服务(待完成)
+13.搭建rainbow-generator 逆向工程生成代码(已完成)
 
-15.搭建rainbow-generator 逆向工程生成代码(已完成)
+14.搭建rainbow-job 定时任务(待完成)
 
-16.搭建rainbow-job 定时任务(待完成)
+15.分布式事务处理(待完成)
 
-17.分布式事务处理(待完成)
-
-18.链路追踪(待完成)
-
-### 服务模块
-
-rainbow模块：
-
-服务名称 | 端口 | 描述
----|---|---
-rainbow-auth| 8881| 微服务认证授权
-rainbow-gateway| 8882 |微服务网关
-rainbow-server-system| 8883 | 系统资源微服务
-nacos| 8848 | 注册中心
-rainbow-bus| 8885 |消息微服务
-rainbow-search| 8886 |全文检索微服务
-rainbow-apm| 8887 |监控微服务
-rainbow-upload| 8888 |文件上传微服务
-rainbow-generator| 8889 |逆向工程-代码生成器
-
-### 目录结构
-```
-├─rainbow-auth                                                  ------ 微服务认证服务器
-├─rainbow-common                                                ------ 通用模块
-│      ├─rainbow-common-datasource-starter                      ------ 数据权限处理和分页插件starter
-│      ├─rainbow-common-redis-starter                           ------ redis缓存starter
-│      ├─rainbow-common-security-starter                        ------ oauth2.0的一些配置
-│      ├─rainbow-common-core                                    ------ 通用工具及系统通用处理
-├─rainbow-gateway                                               -----  微服务网关
-└─rainbow-server                                                ------ 资源服务器
-│   ├─rainbow-system-api                                        ------ 资源服务器api
-│   └─rainbow-system-server                                     ------ 资源服务器业务
-├─rainbow-bus                                                   ------ 消息微服务  
-├─rainbow-upload                                                ------ 文件上传服务  
-├─rainbow-apm                                                   ------ 监控服务  
-├─rainbow-search                                                ------ 全文检索服务  
-```
+16.链路追踪(待完成)
 
 
 
