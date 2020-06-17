@@ -35,11 +35,11 @@ spring:
     port: 6379
     lettuce:
       pool:
-        min-idle: 8
-        max-idle: 500
+        min-idle: 0
+        max-idle: 8
         max-active: 2000
-        max-wait: 10000
-    timeout: 10000
+        max-wait: -1
+    timeout: 5000
 
 #admin 客户端配置
   boot:
