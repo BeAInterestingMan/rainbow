@@ -138,7 +138,7 @@ rainbow-generator| 8889 |逆向工程-代码生成器
     3.实现登录成功发送邮件功能
 
 
-10.搭建rainbow-search全文检索服务(待完成)
+10.搭建rainbow-search全文检索服务
   
     1.搭建elasticsearch服务和kibana可视化界面。
     
@@ -155,7 +155,7 @@ rainbow-generator| 8889 |逆向工程-代码生成器
 
 11.搭建rainbow-upload文件上传服务(已完成 利用fastDfs)
 
-12.搭建rainbow-apm监控服务(待完成)
+12.搭建rainbow-apm监控服务(已完成)
 
 13.搭建rainbow-generator 逆向工程生成代码(已完成)
 
