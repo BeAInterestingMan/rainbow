@@ -1,0 +1,6 @@
+server:
+  port: 8891
+
+spring:
+  application:
+    name: rainbow-task

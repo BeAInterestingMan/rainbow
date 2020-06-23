@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainbow.task.service.mapper.LoginLogMapper">
+    <!-- 基础返回结果集 -->
+    <resultMap id="LoginLogMap" type="com.rainbow.task.api.entity.LoginLog">
+              <id property="id" column="ID"/>
+             <result property="username" column="USERNAME"/>
+             <result property="loginTime" column="LOGIN_TIME"/>
+             <result property="location" column="LOCATION"/>
+             <result property="ip" column="IP"/>
+             <result property="system" column="SYSTEM"/>
+             <result property="browser" column="BROWSER"/>
+    </resultMap>
+
+
+    <!-- 基础列 -->
+    <sql id="baseColumn">
+ ID, USERNAME, LOGIN_TIME, LOCATION, IP, SYSTEM,BROWSER
+    </sql>
+</mapper>

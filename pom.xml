@@ -18,6 +18,7 @@
         <module>rainbow-generator</module>
         <module>rainbow-search</module>
         <module>rainbow-apm</module>
+        <module>rainbow-task</module>
     </modules>
     <description>rainbow微服务</description>
     <!--springboot版本号-->
