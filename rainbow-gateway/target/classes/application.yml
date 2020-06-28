@@ -66,6 +66,15 @@ spring:
               args:
                 name: rainbow-generator
                 fallbackUri: forward:/fallback/rainbow-generator
+        - id: rainbow-job
+          uri: lb://rainbow-job
+          predicates:
+            - Path=/task/**
+          filters:
+            - name: Hystrix
+              args:
+                name: rainbow-job
+                fallbackUri: forward:/fallback/rainbow-job
       default-filters:
         - StripPrefix=1
 

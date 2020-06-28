@@ -56,11 +56,11 @@ security:
       user-info-uri: http://localhost:8882/auth/user
 
 
-##自定义配置
+#自定义配置
 rainbow:
   cloud:
     security:
-#      # 免认证url 多个逗号拼接
-#      anonUris: /captcha,/swagger-ui.html,/webjars/**,/swagger-resources/**,/v2/api-docs/**,/email/**
-#      # 是否禁止请求绕过网关
-      enable: true
+      # 免认证url 多个逗号拼接
+      anonUris: /actuator/**,/captcha,/swagger-ui.html,/webjars/**,/swagger-resources/**,/v2/api-docs/**,/menu/download
+      # 是否开启禁止请求绕过网关
+      enable: false
