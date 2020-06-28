@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainbow.job.service.mapper.JobMapper">
+    <!-- 基础返回结果集 -->
+    <resultMap id="JobMap" type="com.rainbow.job.api.entity.Job">
+              <id property="jobId" column="JOB_ID"/>
+             <result property="beanName" column="BEAN_NAME"/>
+             <result property="methodName" column="METHOD_NAME"/>
+             <result property="params" column="PARAMS"/>
+             <result property="cronExpression" column="CRON_EXPRESSION"/>
+             <result property="status" column="STATUS"/>
+             <result property="remark" column="REMARK"/>
+             <result property="createTime" column="CREATE_TIME"/>
+             <result property="jobName" column="JOB_NAME"/>
+    </resultMap>
+
+
+    <!-- 基础列 -->
+    <sql id="baseColumn">
+ JOB_ID, BEAN_NAME, METHOD_NAME, PARAMS, CRON_EXPRESSION, STATUS, REMARK,CREATE_TIME,JOB_NAME
+    </sql>
+
+    <select id="selectJobPage" resultMap="JobMap" parameterType="com.rainbow.job.api.entity.Job">
+        select * from job
+        <where>
+            <if test=" ‘’!= job.jobName and null != job.jobName">
+                JOB_NAME like CONCAT('%',#{job.jobName},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

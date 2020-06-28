@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainbow.job.service.mapper.JobLogMapper">
+    <!-- 基础返回结果集 -->
+    <resultMap id="JobLogMap" type="com.rainbow.job.api.entity.JobLog">
+              <id property="logId" column="LOG_ID"/>
+             <result property="jobId" column="JOB_ID"/>
+             <result property="beanName" column="BEAN_NAME"/>
+             <result property="methodName" column="METHOD_NAME"/>
+             <result property="params" column="PARAMS"/>
+             <result property="status" column="STATUS"/>
+             <result property="error" column="ERROR"/>
+             <result property="times" column="TIMES"/>
+             <result property="createTime" column="CREATE_TIME"/>
+             <result property="jobName" column="JOB_NAME"/>
+    </resultMap>
+
+
+    <!-- 基础列 -->
+    <sql id="baseColumn">
+ LOG_ID, JOB_ID, BEAN_NAME, METHOD_NAME, PARAMS, STATUS, ERROR, TIMES, CREATE_TIME,JOB_NAME
+    </sql>
+</mapper>
