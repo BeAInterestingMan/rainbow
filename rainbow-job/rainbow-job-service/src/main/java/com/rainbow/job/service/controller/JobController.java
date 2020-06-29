@@ -1,6 +1,8 @@
 package com.rainbow.job.service.controller;
 
 
+import com.rainbow.common.core.entity.QueryRequest;
+import com.rainbow.common.core.utils.RainbowUtil;
 import com.rainbow.job.api.entity.Job;
 import com.rainbow.job.service.service.JobService;
 import io.swagger.annotations.Api;
@@ -35,11 +37,11 @@ public class JobController {
      * @param job
      * @return org.springframework.http.ResponseEntity
      */
-//    @GetMapping
-//    @ApiOperation("查询定时任务分页")
-//    public ResponseEntity list(QueryRequest queryRequest,Job job){
-//            return ResponseEntity.ok(RainbowUtil.buildTableData(jobService.selectPage(queryRequest,job)));
-//    }
+    @GetMapping
+    @ApiOperation("查询定时任务分页")
+    public ResponseEntity list(QueryRequest queryRequest, Job job){
+            return ResponseEntity.ok(RainbowUtil.buildTableData(jobService.selectPage(queryRequest,job)));
+    }
 
     /**
      * @Description 新增定时任务

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import com.rainbow.common.core.entity.QueryRequest;
 import com.rainbow.job.api.entity.Job;
 import com.rainbow.job.service.constant.JobConstant;
 import com.rainbow.job.service.exception.JobException;
@@ -36,18 +37,18 @@ public class JobServiceImpl  implements JobService {
     private final JobMapper jobMapper;
     private final Scheduler scheduler;
 
-//    @Override
-//    public IPage<Job> selectPage(QueryRequest queryRequest, Job job) {
-//        IPage<Job> jobIPage = null;
-//        try {
-//            Page<Job> page = new Page<>(queryRequest.getPageNum(),queryRequest.getPageSize());
-//            jobIPage = jobMapper.selectJobPage(page,job);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            throw new JobException("查询定时任务列表失败");
-//        }
-//        return jobIPage;
-//    }
+    @Override
+    public IPage<Job> selectPage(QueryRequest queryRequest, Job job) {
+        IPage<Job> jobIPage = null;
+        try {
+            Page<Job> page = new Page<>(queryRequest.getPageNum(),queryRequest.getPageSize());
+            jobIPage = jobMapper.selectJobPage(page,job);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new JobException("查询定时任务列表失败");
+        }
+        return jobIPage;
+    }
 
     @Override
     public Job create(Job job, Scheduler scheduler) {

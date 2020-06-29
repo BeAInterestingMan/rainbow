@@ -69,7 +69,7 @@ spring:
         - id: rainbow-job
           uri: lb://rainbow-job
           predicates:
-            - Path=/task/**
+            - Path=/job/**
           filters:
             - name: Hystrix
               args:

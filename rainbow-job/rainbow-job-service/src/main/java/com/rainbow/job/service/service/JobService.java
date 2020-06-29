@@ -1,6 +1,8 @@
 package com.rainbow.job.service.service;
 
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.rainbow.common.core.entity.QueryRequest;
 import com.rainbow.job.api.entity.Job;
 import org.quartz.Scheduler;
 
@@ -66,4 +68,14 @@ public interface JobService {
      * @return void
      */
     void updateJob(Job job);
+
+    /**
+     * @Description 分页查询
+     * @author liuhu
+     * @createTime 2020-06-29 10:19:45
+     * @param queryRequest
+     * @param job
+     * @return com.baomidou.mybatisplus.core.metadata.IPage<com.rainbow.job.api.entity.Job>
+     */
+    IPage<Job> selectPage(QueryRequest queryRequest, Job job);
 }

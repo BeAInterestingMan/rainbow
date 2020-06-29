@@ -6,7 +6,6 @@ package com.rainbow.job.service.constant;
  */
 public interface JobConstant {
     String SCHEDULER_NAME = "rainbow_scheduler";
-    String JOB_PARAM_KEY = "";
     String PAUSE = "1";
     String RUN = "0";
     String JOB_SUCCESS = "0";

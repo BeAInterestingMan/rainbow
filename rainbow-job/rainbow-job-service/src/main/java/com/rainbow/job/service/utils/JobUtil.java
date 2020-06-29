@@ -33,7 +33,7 @@ public class JobUtil {
                     .withIdentity(getTriggerKey(job.getJobId()))
                     .withSchedule(cronScheduleBuilder).build();
             // 放入参数，运行时的方法可以获取
-            jobDetail.getJobDataMap().put(JobConstant.JOB_PARAM_KEY, job);
+            jobDetail.getJobDataMap().put(Job.JOB_PARAM_KEY, job);
             // 执行任务
             scheduler.scheduleJob(jobDetail, cronTrigger);
         }catch (Exception e){
@@ -70,7 +70,7 @@ public class JobUtil {
     public static void run(Scheduler scheduler, Job scheduleJob)  {
         // 存入参数
         JobDataMap dataMap = new JobDataMap();
-        dataMap.put(JobConstant.JOB_PARAM_KEY, scheduleJob);
+        dataMap.put(Job.JOB_PARAM_KEY, scheduleJob);
         log.info("定时任务执行，jobId:{}",scheduleJob.getJobId());
         try {
             scheduler.triggerJob(getJobKey(scheduleJob.getJobId()), dataMap);
@@ -126,7 +126,7 @@ public class JobUtil {
                             .withSchedule(scheduleBuilder)
                             .build();
                     // 参数
-                    trigger.getJobDataMap().put(JobConstant.JOB_PARAM_KEY, scheduleJob);
+                    trigger.getJobDataMap().put(Job.JOB_PARAM_KEY, scheduleJob);
                 }
                 scheduler.rescheduleJob(triggerKey, trigger);
             }

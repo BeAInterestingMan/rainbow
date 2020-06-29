@@ -1,5 +1,6 @@
 package com.rainbow.job.api.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -19,10 +20,11 @@ import io.swagger.annotations.ApiModelProperty;
 @Data
 @ApiModel("job")
 @TableName("t_job")
-public class Job {
+public class Job implements Serializable {
 
-
-        /** 任务id*/
+    public static final String JOB_PARAM_KEY = "JOB_PARAM_KEY";
+    private static final long serialVersionUID = 400066840871805700L;
+    /** 任务id*/
         @ApiModelProperty(name = "jobId",value = "任务id")
         @TableId(value = "JOB_ID", type = IdType.AUTO)
          private Long jobId;

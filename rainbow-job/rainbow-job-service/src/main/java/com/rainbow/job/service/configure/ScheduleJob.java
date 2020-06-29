@@ -26,7 +26,7 @@ public class ScheduleJob extends QuartzJobBean {
     @Override
     protected void executeInternal(JobExecutionContext context) {
         ThreadPoolTaskExecutor scheduleJobExecutorService = SpringContextUtil.getBean(ThreadPoolTaskExecutor.class);
-        Job scheduleJob = (Job) context.getMergedJobDataMap().get(JobConstant.JOB_PARAM_KEY);
+        Job scheduleJob = (Job) context.getMergedJobDataMap().get(Job.JOB_PARAM_KEY);
         JobLogService scheduleJobLogService = SpringContextUtil.getBean(JobLogService.class);
         JobLog jobLog = new JobLog();
         jobLog.setJobId(scheduleJob.getJobId());

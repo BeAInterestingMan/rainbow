@@ -13,6 +13,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 
 /**
 *  @Description ${tableComment!} 实体
@@ -22,7 +23,7 @@ import io.swagger.annotations.ApiModelProperty;
 @Data
 @ApiModel("${tableComment}")
 @TableName("${tableName}")
-public class ${className} {
+public class ${className} implements Serializable{
 
 <#if columns??>
     <#list columns as column>
